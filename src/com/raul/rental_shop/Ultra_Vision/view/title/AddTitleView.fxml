@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="titleAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.title.AddTitleController">
+   <children>
+      <Pane fx:id="mainDiv" layoutY="-6.0" prefHeight="484.0" prefWidth="643.0">
+         <children>
+            <Label layoutX="272.0" layoutY="22.0" text="Add Title">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <VBox layoutX="19.0" layoutY="76.0" prefHeight="398.0" prefWidth="606.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="606.0">
+                     <children>
+                        <Label text="Name:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameField" prefHeight="30.0" prefWidth="202.0" promptText="Enter first name...">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="10.0" text="Cost:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="costField" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="198.0" promptText="Title cost (e.g. € 1.0)">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="606.0">
+                     <children>
+                        <Label text="Genre:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="genreField" prefHeight="30.0" prefWidth="201.0" promptText="Pop, Rock, Soul, Classic...">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="yearLabel" text="Year:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="yearField" promptText="10-02-2020 or 10/02/2020">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="606.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="367.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="367.0">
+                                 <children>
+                                    <Label fx:id="additional1Label" prefHeight="20.0" prefWidth="76.0" text="Additional1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="additional1Field" prefHeight="30.0" prefWidth="247.0" promptText="Enter additional 1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="367.0">
+                                 <children>
+                                    <Label fx:id="additional2Label" prefHeight="20.0" prefWidth="75.0" text="Additional2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="additional2Field" prefHeight="30.0" prefWidth="248.0" promptText="Enter additional 2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="367.0" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="175.0" prefWidth="12.0" />
+                        <VBox alignment="BASELINE_CENTER" prefHeight="175.0" prefWidth="241.0">
+                           <children>
+                              <Label text="Media Format">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="237.0">
+                                 <children>
+                                    <CheckBox fx:id="cdCheck" mnemonicParsing="false" text="CD">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="237.0">
+                                 <children>
+                                    <CheckBox fx:id="dvdCheck" mnemonicParsing="false" text="DVD">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="237.0">
+                                 <children>
+                                    <CheckBox fx:id="bluerayCheck" mnemonicParsing="false" text="BLUERAY">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="606.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#actionCancel" text="Cancel">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="addBtn" mnemonicParsing="false" onAction="#actionAdd" text="Add New">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

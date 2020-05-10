@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="loginAnchor" prefHeight="297.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.LoginController">
+   <children>
+      <Pane prefHeight="297.0" prefWidth="394.0">
+         <children>
+            <VBox layoutX="14.0" layoutY="14.0" prefHeight="271.0" prefWidth="367.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="82.0" prefWidth="367.0" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="68.0" fitWidth="368.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../resources/images/shorter_logo2.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="367.0">
+                     <children>
+                        <Label text="Membership Nº: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="membershipField" onKeyReleased="#valMemberInput" prefHeight="30.0" prefWidth="211.0" promptText="Enter your membership nº" text="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="24.0" prefWidth="367.0">
+                     <children>
+                        <Label fx:id="memberNumLabel" prefHeight="8.0" prefWidth="183.0" text="Only decimal numbers are allowed" textFill="#e80e0e" visible="false">
+                           <HBox.margin>
+                              <Insets bottom="2.0" right="25.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="367.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="106.0" text="Password:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="passwordFiled" onKeyReleased="#showPassword" prefHeight="30.0" prefWidth="211.0" promptText="Enter your password" text="admin">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="367.0">
+                     <children>
+                        <Label fx:id="hiddenPwd" visible="false">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets right="25.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="81.0" prefWidth="367.0">
+                     <children>
+                        <CheckBox fx:id="showPwd" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPassword" text="Show password characters?">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="367.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#close" text="Cancel">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" text="Login">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

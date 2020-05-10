@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainAnchor" prefHeight="509.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.MainController">
+   <children>
+      <BorderPane prefHeight="509.0" prefWidth="783.0">
+         <top>
+            <MenuBar prefHeight="25.0" prefWidth="751.0" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <left>
+            <VBox fx:id="sidebar" prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="closeBtn" text="X" />
+                  <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#actionHome" prefHeight="25.0" prefWidth="140.0" text="Home" />
+                  <Button fx:id="rentalBtn" mnemonicParsing="false" onAction="#actionRental" prefHeight="25.0" prefWidth="140.0" text="Rental" />
+                  <Button fx:id="titlesBtn" mnemonicParsing="false" onAction="#actionTitle" prefHeight="25.0" prefWidth="140.0" text="Titles" />
+                  <Button fx:id="customersBtn" mnemonicParsing="false" onAction="#actionCustomer" prefHeight="25.0" prefWidth="140.0" text="Customers" />
+                  <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#actionCheckout" prefHeight="25.0" prefWidth="140.0" text="Checkout" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="622.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

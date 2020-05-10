@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="titleMenuAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.title.OptionTitleController">
+   <children>
+      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0">
+         <children>
+            <Label layoutX="263.0" layoutY="30.0" text="Title Menu">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Accordion layoutX="31.0" layoutY="85.0" prefHeight="370.0" prefWidth="582.0">
+              <panes>
+                <TitledPane animated="false" prefHeight="260.0" prefWidth="582.0" text="Music">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox layoutX="21.0" layoutY="14.0" prefHeight="226.0" prefWidth="538.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fx:id="songImg" fitHeight="127.0" fitWidth="133.0" onMouseClicked="#actionSong" onTouchPressed="#actionSong" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../../resources/images/title_menu/song.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Song">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fx:id="concertVideoImg" fitHeight="127.0" fitWidth="133.0" onMouseClicked="#actionLiveConcertVideo" onTouchPressed="#actionLiveConcertVideo" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../../resources/images/title_menu/live_concert_video.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Live Concert Video">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" text="Video">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox layoutX="21.0" layoutY="12.0" prefHeight="226.0" prefWidth="538.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fx:id="movieImg" fitHeight="127.0" fitWidth="133.0" onMouseClicked="#actionMovie" onTouchPressed="#actionMovie" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../../resources/images/title_menu/movie.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Movie">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fitHeight="127.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label text="?" visible="false">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" prefHeight="259.0" prefWidth="582.0" text="TV">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox layoutX="21.0" layoutY="12.0" prefHeight="226.0" prefWidth="538.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fx:id="boxsetImg" fitHeight="127.0" fitWidth="133.0" onMouseClicked="#actionBoxSet" onTouchPressed="#actionBoxSet" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../../resources/images/title_menu/boxset.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Box Set">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="178.0" prefWidth="277.0">
+                                       <children>
+                                          <ImageView fitHeight="127.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label text="?" visible="false">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,27 @@
+
+.btn {
+	-fx-background-color: #4caf50;
+	-fx-border: none;
+	-fx-background-color:
+    linear-gradient(#8ab4ff 0%, #232723 25%, #373837 75%, #e492ff 100%),
+    linear-gradient(#1a6dff, #c822ff),
+    linear-gradient(#8ab4ff 0%, #6b6a6b 20%, #343534 80%, #e492ff 100%),
+    linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),
+    linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);
+    -fx-background-insets: 0,1,3,3,3;
+	-fx-background-image: url("../../../../../add_btn.png");
+	-fx-background-size: 25px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 10px;
+}
+
+.btn:hover {
+	-fx-background-color:
+    linear-gradient(#8ab4ff 0%, #232723 25%, #373837 75%, #e492ff 100%),
+    linear-gradient(#1a6dff, #c822ff),
+    linear-gradient(#8ab4ff 0%, #6b6a6b 20%, #343534 80%, #e492ff 100%),
+    linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),
+    linear-gradient(#777777 0%, #606060 55%, #505250 65%, #2a2b2a 100%);
+    -fx-background-insets: 0,1,3,3,3;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.4, 2, 2);
+}

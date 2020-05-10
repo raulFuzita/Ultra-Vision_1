@@ -1,0 +1,28 @@
+/*
+ * https://stackoverflow.com/questions/17116770/how-to-remove-shadow-from-text-area-border/31273855
+ * https://stackoverflow.com/questions/23374244/remove-blue-frame-from-javafx-input-field
+ */
+
+.textDialog {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+}
+
+.textDialog .content {
+    -fx-background-color: transparent;
+}
+
+.textDialog:focused .content {
+    -fx-background-color: transparent;
+}
+
+.textDialog:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.textDialog .content {
+    -fx-padding: 10px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #7ecfff;
+}
+

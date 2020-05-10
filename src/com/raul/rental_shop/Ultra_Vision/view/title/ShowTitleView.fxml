@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="titleAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.title.ShowTitleController">
+   <children>
+      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0">
+         <children>
+            <Label layoutX="230.0" layoutY="23.0" text="Title Information">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <VBox layoutX="19.0" layoutY="76.0" prefHeight="398.0" prefWidth="606.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="606.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="66.0" text="Name:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nameField" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="25.0" prefHeight="20.0" prefWidth="229.0" text="Young Folks">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Cost:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="costField" alignment="CENTER_RIGHT" layoutX="137.0" layoutY="25.0" prefHeight="20.0" prefWidth="207.0" text=" € 1.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="606.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="63.0" text="Genre:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="genreField" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="30.0" prefHeight="20.0" prefWidth="231.0" text="Alternative">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="606.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="367.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="367.0">
+                                 <children>
+                                    <Label fx:id="additionlaLabel" prefHeight="20.0" prefWidth="76.0" text="Additional1:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="additional1Field" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="31.0" prefHeight="20.0" prefWidth="223.0" text="Peter Bjom and John">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="367.0">
+                                 <children>
+                                    <Label fx:id="additionalLabel" prefHeight="20.0" prefWidth="75.0" text="Additional2:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="additional2Field" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="29.0" prefHeight="20.0" prefWidth="225.0" text="Writer's Block">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="367.0" />
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="175.0" prefWidth="12.0" />
+                        <VBox alignment="BASELINE_CENTER" prefHeight="180.0" prefWidth="269.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="237.0">
+                                 <children>
+                                    <Label text="Media:">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="144.0" text="CD">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="606.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#actionClose" text="Close">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

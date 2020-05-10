@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="checkoutAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.checkout.CheckoutController">
+   <children>
+      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0">
+         <children>
+            <TableView fx:id="tableCol" layoutX="11.0" layoutY="160.0" prefHeight="163.0" prefWidth="629.0">
+              <columns>
+                  <TableColumn fx:id="codeCol" prefWidth="70.0" text="Code" />
+                <TableColumn fx:id="nameCol" prefWidth="141.0" text="Name" />
+                <TableColumn fx:id="formatCol" prefWidth="71.0" text="Format" />
+                  <TableColumn fx:id="membershipCol" prefWidth="113.0" text="Membership nº" />
+                  <TableColumn fx:id="customerCol" prefWidth="166.0" text="Customer" />
+                  <TableColumn fx:id="costCol" prefWidth="67.0" text="Cost" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="418.0" prefHeight="52.0" prefWidth="622.0" spacing="10.0">
+               <children>
+                  <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#actionClose" text="Close" />
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#actionDelete" text="Delete" />
+                  <Button fx:id="payBtn" mnemonicParsing="false" onAction="#actionPay" text="Pay" />
+               </children>
+            </HBox>
+            <Label layoutX="197.0" layoutY="20.0" text="Items&gt; Checkout&gt; Confirm">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Separator layoutX="3.0" layoutY="407.0" prefHeight="4.0" prefWidth="637.0" />
+            <HBox layoutX="7.0" layoutY="326.0" prefHeight="75.0" prefWidth="629.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="347.0">
+                     <children>
+                        <RadioButton fx:id="notUsePoints" mnemonicParsing="false" prefHeight="54.0" prefWidth="324.0" selected="true" text="Do not use points">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="usePoints" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="yesUsePoints" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="319.0" text="Use points" toggleGroup="$usePoints">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="100.0" prefWidth="333.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="84.0" prefWidth="305.0" text="Membership Card Points">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label prefHeight="19.0" prefWidth="82.0" text="Points: ">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="pointsBalanceLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="165.0" text="0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator layoutX="7.0" layoutY="77.0" prefHeight="4.0" prefWidth="637.0" />
+            <HBox layoutX="7.0" layoutY="81.0" prefHeight="42.0" prefWidth="629.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="45.0" prefWidth="286.0">
+                     <children>
+                        <Label text="Items:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Points: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="66.0" prefWidth="326.0">
+                     <children>
+                        <Label fx:id="itemsLabel" text="€ 0.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="pointsLabel" text="€ 0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator layoutX="3.0" layoutY="123.0" prefHeight="4.0" prefWidth="637.0" />
+            <HBox layoutX="7.0" layoutY="127.0" prefHeight="25.0" prefWidth="629.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="25.0" prefWidth="289.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="108.0" text="Payment Total:" textFill="#e71111">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="326.0">
+                     <children>
+                        <Label text="€ 0.0" textFill="#e71111">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="17.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

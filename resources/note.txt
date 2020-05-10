@@ -1,0 +1,9 @@
+String strQuery = "SELECT r, concat(c.firstname, ' ', c.lastname) AS fullname, " + 
+				"t.name, t.media_format FROM RentalEntity r " + 
+				"INNER JOIN r.customerEntity c ON c.membership_card = r.customer_membership_card " + 
+				"INNER JOIN title t ON t.code = r.title_code";
+				
+				
+	@ManyToOne
+	@JoinColumn(name = "membership_card")
+	private CustomerEntity customerEntity;

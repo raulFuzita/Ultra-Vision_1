@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="homePage" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.HomeController">
+   <children>
+      <Pane fx:id="pane" prefHeight="484.0" prefWidth="660.0">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="373.0" fitWidth="634.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../../../../resources/images/home_img.jpg" />
+               </image>
+            </ImageView>
+            <TextArea editable="false" layoutX="13.0" layoutY="399.0" prefHeight="56.0" prefWidth="634.0" styleClass="textDialog" stylesheets="@../../util/dialogwindow/diag_style.css" text="Information about the system">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="330.0" layoutY="138.0" text="Ultra Vision">
+               <font>
+                  <Font name="Arial" size="54.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#7e10b9" />
+                        <Stop color="#ddc7e1" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

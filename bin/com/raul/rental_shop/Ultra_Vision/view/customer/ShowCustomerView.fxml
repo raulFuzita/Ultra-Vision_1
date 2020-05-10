@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="showCustomerAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.customer.ShowCustomerController">
+   <children>
+      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0">
+         <children>
+            <Label layoutX="200.0" layoutY="33.0" text="Customer Information">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <VBox layoutX="22.0" layoutY="89.0" prefHeight="375.0" prefWidth="606.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="606.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="47.0" text="Name:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nameLabel" layoutX="128.0" layoutY="25.0" prefHeight="20.0" prefWidth="195.0" text="John">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="68.0" text="Surname:">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="surnameLabel" layoutX="338.0" layoutY="25.0" prefHeight="20.0" prefWidth="227.0" text="Doe">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="606.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="52.0" text="Phone:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="phoneLabel" layoutX="126.0" layoutY="30.0" prefHeight="20.0" prefWidth="180.0" text="999 9999">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="64.0" text="Birthday:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="birthdayLabel" layoutX="341.0" layoutY="30.0" prefHeight="20.0" prefWidth="222.0" text="01/01/2020">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox prefHeight="175.0" prefWidth="606.0">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="367.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="63.0" prefWidth="367.0">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="53.0" text="Street:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="streetLabel" layoutX="167.0" layoutY="30.0" prefHeight="20.0" prefWidth="258.0" text="Westmoreland">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="367.0">
+                                 <children>
+                                    <Label prefHeight="20.0" prefWidth="53.0" text="City:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="cityLabel" layoutX="167.0" layoutY="29.0" prefHeight="20.0" prefWidth="257.0" text="Dublin">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="62.0" prefWidth="367.0">
+                                 <children>
+                                    <Label text="Country:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="countryLabel" layoutX="167.0" layoutY="30.0" prefHeight="20.0" prefWidth="254.0" text="Ireland">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="175.0" prefWidth="12.0" />
+                        <VBox alignment="BASELINE_CENTER" prefHeight="175.0" prefWidth="241.0">
+                           <children>
+                              <Label text="Membership Plan">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="membershipLabel" layoutX="75.0" layoutY="25.0" text="Premium">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="606.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="editBtn" mnemonicParsing="false" onAction="#actionEdit" text="Edit">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#actionCancel" text="Cancel">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

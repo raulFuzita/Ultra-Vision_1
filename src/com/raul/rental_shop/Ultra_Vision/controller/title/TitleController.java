@@ -6,8 +6,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.raul.rental_shop.Ultra_Vision.model.DAO;
+import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
+import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
+import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,15 +48,55 @@ public class TitleController implements Initializable {
 	@FXML private Button addBtn;
 	
 	private AnchorPane pane = null;
+	private TitleEntity rowData = null;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		this.populateTableView();
+		
+		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
+		this.table.setRowFactory( tv -> {
+			TableRow<TitleEntity> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 1 && (!row.isEmpty())) {
+					this.rowData = row.getItem();
+				} else if (event.getClickCount() == 2 && (!row.isEmpty())) {
+					this.rowData = row.getItem();
+					this.actionView();
+				}
+			});
+			return row;
+		});
 	}
 	
 	@FXML
 	public void actionDelete() {
-		
+		if (rowData == null) {
+			String msg = "Select a row first";
+			FactoryDialogWindow fdw = new FactoryDialogWindow();
+			fdw.makeDiagInfo(msg);
+		} else {
+			
+			String msg = "Do you really want to delete this title?";
+			FactoryDialogWindow fdw = new FactoryDialogWindow();
+			Dialog dig = fdw.makeDiagOption(msg);
+			
+			if (dig.isOption()) {
+				DAO<TitleEntity> dao = new TitleDAO();
+				try {
+					if (dao.remove(rowData)) {
+						msg = "Title has been deleted successfully";
+					} else {
+						msg = "Something happended the title wasn't removed";
+					}
+					fdw.makeDiagInfo(msg);
+					populateTableView();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	@FXML

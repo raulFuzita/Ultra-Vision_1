@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicEntity;
+import com.raul.rental_shop.Ultra_Vision.model.title.TVDAO;
+import com.raul.rental_shop.Ultra_Vision.model.title.TVEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.VideoDAO;
@@ -195,26 +197,26 @@ public class OptionTitleController implements Initializable {
 				@Override
 				public void handle(ActionEvent arg0) {
 					
-					VideoEntity ms = new VideoEntity();
+					VideoEntity vd = new VideoEntity();
 					TitleDAO tDAO = new TitleDAO();
 					try {
 						int code = tDAO.lastCode();
-						ms.setCode(++code);
-						ms.setName(atc.getNameField().getText());
+						vd.setCode(++code);
+						vd.setName(atc.getNameField().getText());
 						double cost = Double.parseDouble(atc.getCostField().getText());
-						ms.setCost(cost);
-						ms.setGenre(atc.getGenreField().getText());
-						ms.setYear(atc.getYearField().getText());
-						ms.setDirector(atc.getAdditional1Field().getText());
-						ms.setDescription(atc.getAdditional2Field().getText());
-						ms.setMediaFormat(atc.getCdCheck().getText());
-						ms.setTypeTitle(typePlan);
+						vd.setCost(cost);
+						vd.setGenre(atc.getGenreField().getText());
+						vd.setYear(atc.getYearField().getText());
+						vd.setDirector(atc.getAdditional1Field().getText());
+						vd.setDescription(atc.getAdditional2Field().getText());
+						vd.setMediaFormat(atc.getDvdCheck().getText());
+						vd.setTypeTitle(typePlan);
 						
-						TitleEntity t = ms;
+						TitleEntity t = vd;
 						
 						if(tDAO.add(t)) {
 							VideoDAO mDAO = new VideoDAO();
-							if(mDAO.add(ms)) {
+							if(mDAO.add(vd)) {
 								dialogMaker.makeDiagInfo("Music has been created successfully");
 								atc.cleanFields();
 							}
@@ -253,8 +255,46 @@ public class OptionTitleController implements Initializable {
 			atc.getAdditional2Label().setVisible(false);
 			atc.getAdditional2Field().setVisible(false);
 			atc.getCdCheck().setDisable(true);
+			atc.getDvdCheck().setSelected(true);
 			atc.getDvdCheck().setDisable(false);
 			atc.getBluerayCheck().setDisable(false);
+			
+			atc.getAddBtn().setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					
+					TVEntity tv = new TVEntity();
+					TitleDAO tDAO = new TitleDAO();
+					try {
+						int code = tDAO.lastCode();
+						tv.setCode(++code);
+						tv.setName(atc.getNameField().getText());
+						double cost = Double.parseDouble(atc.getCostField().getText());
+						tv.setCost(cost);
+						tv.setGenre(atc.getGenreField().getText());
+						tv.setYear(atc.getYearField().getText());
+						tv.setCharacterSeries(atc.getAdditional1Field().getText());
+						tv.setMediaFormat(atc.getDvdCheck().getText());
+						tv.setTypeTitle(typePlan);
+						
+						TitleEntity t = tv;
+						
+						if(tDAO.add(t)) {
+							TVDAO mDAO = new TVDAO();
+							if(mDAO.add(tv)) {
+								dialogMaker.makeDiagInfo("Music has been created successfully");
+								atc.cleanFields();
+							}
+						}
+						
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					
+					
+				}
+			});
 			
 			this.mainDiv.getChildren().setAll(pane);
 			

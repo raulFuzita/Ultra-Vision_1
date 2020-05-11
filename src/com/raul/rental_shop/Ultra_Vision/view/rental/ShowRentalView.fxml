@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -9,26 +10,34 @@
 
 <AnchorPane fx:id="titleAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.rental.ShowRentalController">
    <children>
-      <Pane fx:id="closeBtn" prefHeight="484.0" prefWidth="643.0">
+      <Pane fx:id="closeBtn" prefHeight="484.0" prefWidth="643.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
             <Label layoutX="222.0" layoutY="20.0" text="Rental Informaton">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.9476190476190476" startX="1.0" startY="0.24285714285714285">
+                     <stops>
+                        <Stop color="#5d22a3" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <VBox layoutX="19.0" layoutY="76.0" prefHeight="398.0" prefWidth="606.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="606.0">
                      <children>
-                        <Label text="Rented at:">
+                        <Label text="Rented at:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="rentedAtLabel" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="22.0" prefHeight="20.0" prefWidth="201.0" text="01/01/2020">
+                        <Label fx:id="rentedAtLabel" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="22.0" prefHeight="20.0" prefWidth="201.0" text="01/01/2020" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -36,15 +45,15 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="65.0" text="Return at:">
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="73.0" text="Return at:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="returnAtLable" alignment="CENTER_RIGHT" layoutX="319.0" layoutY="22.0" prefHeight="20.0" prefWidth="198.0" text="01/10/2020">
+                        <Label fx:id="returnAtLable" alignment="CENTER_RIGHT" layoutX="319.0" layoutY="22.0" prefHeight="20.0" prefWidth="198.0" text="01/10/2020" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -56,15 +65,15 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="606.0">
                      <children>
-                        <Label text="Membership nº: ">
+                        <Label prefHeight="20.0" prefWidth="120.0" text="Membership nº: " textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="161.0" text="000000001">
+                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="150.0" text="000000001" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -72,15 +81,15 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="65.0" text="Customer:">
+                        <Label prefHeight="20.0" prefWidth="79.0" text="Customer:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="319.0" layoutY="27.0" prefHeight="20.0" prefWidth="198.0" text="John Doe">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="319.0" layoutY="27.0" prefHeight="20.0" prefWidth="198.0" text="John Doe" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -92,15 +101,15 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="606.0">
                      <children>
-                        <Label text="Title:">
+                        <Label text="Title:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="237.0" text="Young Folks">
+                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="237.0" text="Young Folks" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -108,15 +117,15 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Code:">
+                        <Label text="Code:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="322.0" layoutY="27.0" prefHeight="20.0" prefWidth="227.0" text="0000000000">
+                        <Label alignment="CENTER_RIGHT" layoutX="322.0" layoutY="27.0" prefHeight="20.0" prefWidth="227.0" text="0000000000" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -142,9 +151,9 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="117.0">
                                        <children>
-                                          <Label text="Media:">
+                                          <Label text="Media:" textFill="WHITE">
                                              <font>
-                                                <Font size="14.0" />
+                                                <Font name="System Bold" size="14.0" />
                                              </font>
                                              <HBox.margin>
                                                 <Insets left="5.0" />
@@ -152,7 +161,7 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <Label fx:id="mediaLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="175.0" text="CD">
+                                    <Label fx:id="mediaLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="175.0" text="CD" textFill="WHITE">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -175,15 +184,15 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Label text="Title Type:">
+                                    <Label text="Title Type:" textFill="WHITE">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="198.0" text="Music Lover">
+                                    <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="198.0" text="Music Lover" textFill="WHITE">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -205,9 +214,9 @@
                   </Separator>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="606.0" spacing="15.0">
                      <children>
-                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#actionClose" text="Close">
+                        <Button id="cancel-btn" fx:id="cancelBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionClose" prefHeight="35.0" prefWidth="83.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Close" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>

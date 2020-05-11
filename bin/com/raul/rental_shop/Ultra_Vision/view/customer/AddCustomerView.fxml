@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="titleAnchor" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.customer.AddCustomerController">
    <children>
-      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0">
+      <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
             <Label layoutX="242.0" layoutY="22.0" text="Add Customer">
                <font>
@@ -20,12 +20,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="606.0">
                      <children>
-                        <Label text="Name:">
+                        <Label prefHeight="20.0" prefWidth="52.0" text="Name:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                         <TextField fx:id="nameField" prefHeight="30.0" prefWidth="202.0" promptText="Enter first name...">
@@ -36,15 +36,15 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="10.0" layoutY="10.0" text="Surname:">
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="73.0" text="Surname:" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="surnameField" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="236.0" promptText="Enter middle and last name...">
+                        <TextField fx:id="surnameField" layoutX="38.0" layoutY="10.0" prefHeight="30.0" prefWidth="228.0" promptText="Enter middle and last name...">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -56,9 +56,9 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="60.0" prefWidth="606.0">
                      <children>
-                        <Label text="Phone:">
+                        <Label prefHeight="20.0" prefWidth="58.0" text="Phone:" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="5.0" />
@@ -72,9 +72,9 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="15.0" layoutY="10.0" text="Birthday:">
+                        <Label layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="70.0" text="Birthday:" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="20.0" />
@@ -98,9 +98,9 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="63.0" prefWidth="367.0">
                                  <children>
-                                    <Label prefHeight="20.0" prefWidth="53.0" text="Street:">
+                                    <Label prefHeight="20.0" prefWidth="53.0" text="Street:" textFill="WHITE">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" />
@@ -118,9 +118,9 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="60.0" prefWidth="367.0">
                                  <children>
-                                    <Label prefHeight="20.0" prefWidth="53.0" text="City:">
+                                    <Label prefHeight="20.0" prefWidth="53.0" text="City:" textFill="WHITE">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" />
@@ -138,9 +138,9 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="62.0" prefWidth="367.0">
                                  <children>
-                                    <Label text="Country:">
+                                    <Label text="Country:" textFill="WHITE">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" />
@@ -161,15 +161,15 @@
                         <Separator orientation="VERTICAL" prefHeight="175.0" prefWidth="12.0" />
                         <VBox alignment="BASELINE_CENTER" prefHeight="175.0" prefWidth="241.0">
                            <children>
-                              <Label text="Membership Plan">
+                              <Label text="Membership Plan" textFill="WHITE">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <ComboBox fx:id="memberBox" prefHeight="25.0" prefWidth="200.0" promptText="Selec a membership plan">
+                              <ComboBox fx:id="memberBox" prefHeight="30.0" prefWidth="200.0" promptText="Selec a membership plan">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -177,15 +177,15 @@
                                     <Insets bottom="3.0" top="3.0" />
                                  </padding>
                               </ComboBox>
-                              <Label text="Privilege">
+                              <Label text="Privilege" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="privilegeBox" prefHeight="31.0" prefWidth="199.0" promptText="Select privilege">
+                              <ComboBox fx:id="privilegeBox" prefHeight="30.0" prefWidth="199.0" promptText="Select privilege">
                                  <padding>
                                     <Insets bottom="3.0" top="3.0" />
                                  </padding>
@@ -201,9 +201,9 @@
                   </Separator>
                   <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="606.0">
                      <children>
-                        <Label text="Password:">
+                        <Label text="Password:" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="5.0" />
@@ -221,14 +221,14 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="606.0" spacing="15.0">
                      <children>
-                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#actionCancel" text="Cancel">
+                        <Button id="cancel-btn" fx:id="cancelBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionCancel" prefHeight="35.0" prefWidth="90.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Cancel" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="addBtn" mnemonicParsing="false" onAction="#actionAdd" text="Add New">
+                        <Button id="add-btn" fx:id="addBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionAdd" prefHeight="35.0" prefWidth="78.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Add" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>

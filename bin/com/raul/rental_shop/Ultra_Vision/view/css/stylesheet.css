@@ -1,4 +1,60 @@
 
+#home-btn {
+	-fx-background-image: url("../../../../../../../resources/images/menu/home.png");
+}
+#customer-btn {
+	-fx-background-image: url("../../../../../../../resources/images/menu/customer.png");
+}
+#title-btn {
+	-fx-background-image: url("../../../../../../../resources/images/menu/title.png");
+}
+#rental-btn {
+	-fx-background-image: url("../../../../../../../resources/images/menu/rental.png");
+}
+#checkout-btn {
+	-fx-background-image: url("../../../../../../../resources/images/menu/checkout.png");
+}
+#add-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/add.png");
+}
+#cancel-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/cancel.png");
+}
+#confirm-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/confirm.png");
+}
+#delete-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/delete.png");
+}
+#edit-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/edit.png");
+}
+#search-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/search.png");
+}
+#key-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/key.png");
+}
+#save-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/save.png");
+}
+#basket-btn {
+	-fx-background-image: url("../../../../../../../resources/images/buttons/basket.png");
+}
+
+.dark-field {
+	-fx-border-bottom-color: #5b5a5a;
+	-fx-border-bottom: 2px;
+}
+
+.dark-bg {
+	-fx-background-color: #333333;
+}
+
+.light-text {
+	-fx-color: #ffffff;
+}
+
 .btn {
 	-fx-background-color: #4caf50;
 	-fx-border: none;
@@ -9,8 +65,7 @@
     linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),
     linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);
     -fx-background-insets: 0,1,3,3,3;
-	-fx-background-image: url("../../../../../add_btn.png");
-	-fx-background-size: 25px;
+    -fx-background-size: 25px;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 10px;
 }
@@ -24,4 +79,22 @@
     linear-gradient(#777777 0%, #606060 55%, #505250 65%, #2a2b2a 100%);
     -fx-background-insets: 0,1,3,3,3;
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.4, 2, 2);
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: #ffffff;
+    -fx-highlight-fill: #7ecfff;
 }

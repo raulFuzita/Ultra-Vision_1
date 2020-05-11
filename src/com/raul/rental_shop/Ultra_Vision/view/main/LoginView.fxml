@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="loginAnchor" prefHeight="297.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.LoginController">
+<AnchorPane fx:id="loginAnchor" prefHeight="297.0" prefWidth="394.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.LoginController">
    <children>
-      <Pane prefHeight="297.0" prefWidth="394.0">
+      <Pane prefHeight="297.0" prefWidth="394.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
             <VBox layoutX="14.0" layoutY="14.0" prefHeight="271.0" prefWidth="367.0">
                <children>
@@ -26,9 +26,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="367.0">
                      <children>
-                        <Label text="Membership Nº: ">
+                        <Label text="Membership Nº: " textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                         <TextField fx:id="membershipField" onKeyReleased="#valMemberInput" prefHeight="30.0" prefWidth="211.0" promptText="Enter your membership nº" text="1">
@@ -55,9 +55,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="367.0">
                      <children>
-                        <Label prefHeight="20.0" prefWidth="106.0" text="Password:">
+                        <Label prefHeight="20.0" prefWidth="112.0" text="Password:" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                         <PasswordField fx:id="passwordFiled" onKeyReleased="#showPassword" prefHeight="30.0" prefWidth="211.0" promptText="Enter your password" text="admin">
@@ -75,7 +75,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="367.0">
                      <children>
-                        <Label fx:id="hiddenPwd" visible="false">
+                        <Label fx:id="hiddenPwd" textFill="WHITE" visible="false">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -87,9 +87,9 @@
                   </HBox>
                   <HBox prefHeight="81.0" prefWidth="367.0">
                      <children>
-                        <CheckBox fx:id="showPwd" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPassword" text="Show password characters?">
+                        <CheckBox fx:id="showPwd" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPassword" text="Show password characters?" textFill="WHITE">
                            <font>
-                              <Font name="System Italic" size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -99,14 +99,14 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="367.0" spacing="15.0">
                      <children>
-                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#close" text="Cancel">
+                        <Button id="cancel-btn" fx:id="cancelBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#close" prefHeight="35.0" prefWidth="87.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Cancel" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" text="Login">
+                        <Button id="key-btn" fx:id="loginBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="85.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Login" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>

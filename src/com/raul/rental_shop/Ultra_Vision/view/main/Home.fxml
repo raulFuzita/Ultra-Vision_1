@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -10,14 +11,14 @@
 
 <AnchorPane fx:id="homePage" prefHeight="484.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.HomeController">
    <children>
-      <Pane fx:id="pane" prefHeight="484.0" prefWidth="660.0">
+      <Pane fx:id="pane" prefHeight="484.0" prefWidth="660.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
-            <ImageView fx:id="imageView" fitHeight="373.0" fitWidth="634.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true">
+            <ImageView fx:id="imageView" fitHeight="373.0" fitWidth="634.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" styleClass="dark-bg">
                <image>
                   <Image url="@../../../../../../../../../resources/images/home_img.jpg" />
                </image>
             </ImageView>
-            <TextArea editable="false" layoutX="13.0" layoutY="399.0" prefHeight="56.0" prefWidth="634.0" styleClass="textDialog" stylesheets="@../../util/dialogwindow/diag_style.css" text="Information about the system">
+            <TextArea editable="false" layoutX="13.0" layoutY="399.0" prefHeight="56.0" prefWidth="634.0" stylesheets="@../css/stylesheet.css" text="Information about the system">
                <font>
                   <Font size="16.0" />
                </font>

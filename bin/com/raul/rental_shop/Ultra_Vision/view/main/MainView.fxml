@@ -1,48 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainAnchor" prefHeight="509.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.MainController">
+<AnchorPane fx:id="mainAnchor" prefHeight="509.0" prefWidth="783.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.controller.main.MainController">
    <children>
       <BorderPane prefHeight="509.0" prefWidth="783.0">
-         <top>
-            <MenuBar prefHeight="25.0" prefWidth="751.0" BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
          <left>
-            <VBox fx:id="sidebar" prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="sidebar" prefHeight="200.0" prefWidth="140.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="closeBtn" text="X" />
-                  <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#actionHome" prefHeight="25.0" prefWidth="140.0" text="Home" />
-                  <Button fx:id="rentalBtn" mnemonicParsing="false" onAction="#actionRental" prefHeight="25.0" prefWidth="140.0" text="Rental" />
-                  <Button fx:id="titlesBtn" mnemonicParsing="false" onAction="#actionTitle" prefHeight="25.0" prefWidth="140.0" text="Titles" />
-                  <Button fx:id="customersBtn" mnemonicParsing="false" onAction="#actionCustomer" prefHeight="25.0" prefWidth="140.0" text="Customers" />
-                  <Button fx:id="checkoutBtn" mnemonicParsing="false" onAction="#actionCheckout" prefHeight="25.0" prefWidth="140.0" text="Checkout" />
+                  <Button id="home-btn" fx:id="homeBtn" mnemonicParsing="false" onAction="#actionHome" prefHeight="35.0" prefWidth="140.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin></Button>
+                  <Button id="rental-btn" fx:id="rentalBtn" mnemonicParsing="false" onAction="#actionRental" prefHeight="35.0" prefWidth="140.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Rental" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin></Button>
+                  <Button id="title-btn" fx:id="titlesBtn" mnemonicParsing="false" onAction="#actionTitle" prefHeight="35.0" prefWidth="140.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Titles" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin></Button>
+                  <Button id="customer-btn" fx:id="customersBtn" mnemonicParsing="false" onAction="#actionCustomer" prefHeight="35.0" prefWidth="140.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Customers" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin></Button>
+                  <Button id="checkout-btn" fx:id="checkoutBtn" mnemonicParsing="false" onAction="#actionCheckout" prefHeight="35.0" prefWidth="140.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Checkout" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin></Button>
                </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </VBox>
          </left>
          <center>
-            <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="622.0" BorderPane.alignment="CENTER" />
+            <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="622.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

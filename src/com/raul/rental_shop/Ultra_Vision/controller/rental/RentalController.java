@@ -39,7 +39,7 @@ public class RentalController implements Initializable {
 	@FXML private Pane mainDiv;
 	
 	@FXML private Button deleteBtn;
-	@FXML private Button updateBtn;
+	@FXML private Button editBtn;
 	@FXML private Button viewBtn;
 	@FXML private Button returnedBtn;
 	
@@ -52,10 +52,10 @@ public class RentalController implements Initializable {
 		Optional<CustomerEntity> optional = Optional.ofNullable(customer);
 		CustomerEntity c = optional.orElse(new NullCustomerEntity());
 		
-		if (!c.getPrivilege().equalsIgnoreCase("admin")) {
+		/*if (!c.getPrivilege().equalsIgnoreCase("admin")) {
 			this.deleteBtn.setVisible(false);
 			this.updateBtn.setVisible(false);
-		}
+		}*/
 		
 		populateTableView();
 	}

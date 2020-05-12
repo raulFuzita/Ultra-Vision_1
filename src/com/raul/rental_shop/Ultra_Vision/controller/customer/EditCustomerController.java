@@ -15,6 +15,7 @@ import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
@@ -49,6 +50,7 @@ public class EditCustomerController implements Initializable {
 	
 	private AnchorPane pane = null;
 	private CustomerEntity customer;
+	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -60,30 +62,33 @@ public class EditCustomerController implements Initializable {
 				"TV Lover",
 				"Premium");
 		
-		DatePickerFormat.format(birthdayPick, "dd-MM-yyyy");
+		DatePickerFormat.format(birthdayPick, "dd/MM/yyyy");
 	}
 	
 	@FXML
 	public void actionUpdate() {
 		
-		String msg = "Do you really want to update this user?";
-		FactoryDialogWindow fdw = new FactoryDialogWindow();
-		Dialog dig = fdw.makeDiagOption(msg);
-		
-		if (dig.isOption()) {
-			DAO<CustomerEntity> dao = new CustomerDAO();
-			try {
-				
-				this.getChanges();
-				
-				if (dao.update(this.customer)) {
-					msg = "User infomations has been updated successfully";
-				} else {
-					msg = "Something happended user information wasn't updated.";
+		if (this.validateFields()) {
+			
+			String msg = "Do you really want to update this user?";
+			FactoryDialogWindow fdw = new FactoryDialogWindow();
+			Dialog dig = fdw.makeDiagOption(msg);
+			
+			if (dig.isOption()) {
+				DAO<CustomerEntity> dao = new CustomerDAO();
+				try {
+					
+					this.getChanges();
+					
+					if (dao.update(this.customer)) {
+						msg = "User infomations has been updated successfully";
+					} else {
+						msg = "Something happended user information wasn't updated.";
+					}
+					fdw.makeDiagInfo(msg);
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-				fdw.makeDiagInfo(msg);
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 		}
 	}
@@ -201,6 +206,58 @@ public class EditCustomerController implements Initializable {
 		
 		this.memberBox.getSelectionModel().select(memberPlanId);
 		
+	}
+	
+	private boolean validateFields() {
+		
+		String name = this.nameField.getText();
+		String surname = this.surnameField.getText();
+		
+		String birthday = "";
+		
+		if(this.birthdayPick.getValue() != null) {
+			LocalDate date = this.birthdayPick.getValue();
+			birthday = date.toString();
+			birthday = DateFormat.format(birthday, "yyyy-MM-dd", "dd/MM/yyyy");
+		}
+		
+		String street = this.streetField.getText();
+		String city = this.cityField.getText();
+		String country = this.countryField.getText();
+		String password = this.passwordField.getText();
+		
+		if (name.isEmpty()) {
+			this.fdw.makeDiagInfo("The field name must be filled");
+			return false;
+		} 
+		if (surname.isEmpty()) {
+			this.fdw.makeDiagInfo("The field surname must be filled");
+			return false;
+		}
+		
+		if (!birthday.matches("^(3[01]|[12][0-9]|0[1-9]])/(1[0-2]|0[1-9])/[0-9]{4}$")) {
+			this.fdw.makeDiagInfo("Wrong date format, please the supported "
+					+ "\nformat is dd/MM/yyyy");
+			return false;
+		} 
+		if (street.isEmpty()) {
+			this.fdw.makeDiagInfo("The field street must be filled");
+			return false;
+		} 
+		if (city.isEmpty()) {
+			this.fdw.makeDiagInfo("The field city must be filled");
+			return false;
+		} 
+		if (country.isEmpty()) {
+			this.fdw.makeDiagInfo("The field country must be filled");
+			return false;
+		} 
+		if (password.isEmpty()) {
+			this.fdw.makeDiagInfo("The field password must be filled");
+			return false;
+		}
+		
+		return true;
 	}
 
 	public CustomerEntity getCustomer() {

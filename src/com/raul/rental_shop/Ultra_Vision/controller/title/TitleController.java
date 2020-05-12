@@ -379,64 +379,68 @@ public class TitleController implements Initializable {
 				etc.getGenreField().setText(this.rowData.getGenre());
 				etc.getCostField().setText("" + this.rowData.getCost());
 				etc.getDatePicker().setValue(LocalDate.parse(this.rowData.getYear()));
+				
 				etc.getUpdateBtn().setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override
 					public void handle(ActionEvent arg0) {
 						
-						if (typePlan.equalsIgnoreCase("ML")) {
-							MusicDAO dao = new MusicDAO();
+						if (etc.validateFields()) {
+							
+							if (typePlan.equalsIgnoreCase("ML")) {
+								MusicDAO dao = new MusicDAO();
+								try {
+									dao.update(ms);
+								} catch (SQLException e) {
+									e.printStackTrace();
+								}
+							} else if (typePlan.equalsIgnoreCase("VL")) {
+								VideoDAO dao = new VideoDAO();
+								try {
+									dao.update(vd);
+								} catch (SQLException e) {
+									e.printStackTrace();
+								}
+							} else if (typePlan.equalsIgnoreCase("TV")) {
+								TVDAO dao = new TVDAO();
+								try {
+									dao.update(tv);
+								} catch (SQLException e) {
+									e.printStackTrace();
+								}
+							}
+							
+							TitleEntity t = new TitleEntity();
+							
+							t.setCode(rowData.getCode());
+							t.setName(etc.getNameField().getText());
+							t.setGenre(etc.getGenreField().getText());
+							
+							
+							LocalDate year = etc.getDatePicker().getValue();
+							t.setYear(year.toString());
+							
+							
+							t.setTypeTitle(rowData.getTypeTitle());
+							
+							double cost = Double.parseDouble(etc.getCostField().getText());
+							t.setCost(cost);
+							
+							RadioButton chk = (RadioButton) etc.getMediaGroup().getSelectedToggle();
+							
+							t.setMediaFormat(chk.getText());
+							
+							
+							TitleDAO tDAO = new TitleDAO();
 							try {
-								dao.update(ms);
+								if(tDAO.update(t)) {
+									dialogMaker.makeDiagInfo("It has been updated successfully");
+								} else {
+									dialogMaker.makeDiagInfo("Unfortunatelly it wasn't updated.");
+								}
 							} catch (SQLException e) {
 								e.printStackTrace();
 							}
-						} else if (typePlan.equalsIgnoreCase("VL")) {
-							VideoDAO dao = new VideoDAO();
-							try {
-								dao.update(vd);
-							} catch (SQLException e) {
-								e.printStackTrace();
-							}
-						} else if (typePlan.equalsIgnoreCase("TV")) {
-							TVDAO dao = new TVDAO();
-							try {
-								dao.update(tv);
-							} catch (SQLException e) {
-								e.printStackTrace();
-							}
-						}
-						
-						TitleEntity t = new TitleEntity();
-						
-						t.setCode(rowData.getCode());
-						t.setName(etc.getNameField().getText());
-						t.setGenre(etc.getGenreField().getText());
-						
-						
-						LocalDate year = etc.getDatePicker().getValue();
-						t.setYear(year.toString());
-						
-						
-						t.setTypeTitle(rowData.getTypeTitle());
-						
-						double cost = Double.parseDouble(etc.getCostField().getText());
-						t.setCost(cost);
-						
-						RadioButton chk = (RadioButton) etc.getMediaGroup().getSelectedToggle();
-						
-						t.setMediaFormat(chk.getText());
-						
-						
-						TitleDAO tDAO = new TitleDAO();
-						try {
-							if(tDAO.update(t)) {
-								dialogMaker.makeDiagInfo("It has been updated successfully");
-							} else {
-								dialogMaker.makeDiagInfo("Unfortunatelly it wasn't updated.");
-							}
-						} catch (SQLException e) {
-							e.printStackTrace();
 						}
 					}
 				});

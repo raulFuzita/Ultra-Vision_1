@@ -2,10 +2,13 @@ package com.raul.rental_shop.Ultra_Vision.controller.title;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
+import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +43,7 @@ public class AddTitleController implements Initializable {
 	
 	private AnchorPane pane = null;
 	private TitleEntity titleEntity = null;
+	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -75,6 +79,39 @@ public class AddTitleController implements Initializable {
 		this.additional1Field.setText("");
 		this.additional2Field.setText("");
 		this.datePicker.setValue(null);
+	}
+	
+	public boolean validateFields() {
+		
+		String mediaCD = this.cdCheck.getText();
+		String mediaDVD = this.dvdCheck.getText();
+		String mediaBLUERAY = this.bluerayCheck.getText();
+		
+		String year = "";
+		
+		if(this.datePicker.getValue() != null) {
+			LocalDate date = this.datePicker.getValue();
+			year = date.toString();
+			year = DateFormat.format(year, "yyyy-MM-dd", "dd/MM/yyyy");
+		} else {
+			LocalDate currentDate = LocalDate.now();
+			this.datePicker.setValue(currentDate);
+			DatePickerFormat.format(datePicker, "dd/MM/yyyy");
+		}
+		
+		
+		if (!year.matches("^(3[01]|[12][0-9]|0[1-9]])/(1[0-2]|0[1-9])/[0-9]{4}$")) {
+			this.fdw.makeDiagInfo("Wrong date format, please the supported "
+					+ "\nformat is dd/MM/yyyy");
+			return false;
+		}
+		
+		if (mediaCD.isEmpty() && mediaDVD.isEmpty() && mediaBLUERAY.isEmpty()) {
+			this.fdw.makeDiagInfo("You must select one of the media formats");
+			return false;
+		}
+		
+		return true;
 	}
 
 	public CheckBox getDvdCheck() {

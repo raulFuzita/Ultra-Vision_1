@@ -120,46 +120,49 @@ public class OptionTitleController implements Initializable {
 				@Override
 				public void handle(ActionEvent arg0) {
 					
-					MusicEntity ms = new MusicEntity();
-					TitleDAO tDAO = new TitleDAO();
-					try {
-						int code = tDAO.lastCode();
-						ms.setCode(++code);
-						ms.setName(atc.getNameField().getText());
-						double cost = Double.parseDouble(atc.getCostField().getText());
-						ms.setCost(cost);
-						ms.setGenre(atc.getGenreField().getText());
+					if (atc.validateFields()) {
 						
-						LocalDate year = atc.getDatePicker().getValue();
-						ms.setYear(year.toString());
+						System.out.println("Inside of validation");
 						
-						ms.setArtist(atc.getAdditional1Field().getText());
-						ms.setAlbum(atc.getAdditional2Field().getText());
-						
-						if (typePlan.equalsIgnoreCase("ML")) {
-							ms.setMediaFormat(atc.getCdCheck().getText());
-						} else {
-							ms.setMediaFormat(atc.getDvdCheck().getText());
-						}
-						
-						ms.setTypeTitle(typePlan);
-						
-						TitleEntity t = ms;
-						
-						if(tDAO.add(t)) {
-							MusicDAO mDAO = new MusicDAO();
-							if(mDAO.add(ms)) {
-								dialogMaker.makeDiagInfo("Music has been created successfully");
-								atc.cleanFields();
+						MusicEntity ms = new MusicEntity();
+						TitleDAO tDAO = new TitleDAO();
+						try {
+							int code = tDAO.lastCode();
+							ms.setCode(++code);
+							ms.setName(atc.getNameField().getText());
+							double cost = Double.parseDouble(atc.getCostField().getText());
+							ms.setCost(cost);
+							ms.setGenre(atc.getGenreField().getText());
+							
+							LocalDate year = atc.getDatePicker().getValue();
+							ms.setYear(year.toString());
+							
+							ms.setArtist(atc.getAdditional1Field().getText());
+							ms.setAlbum(atc.getAdditional2Field().getText());
+							
+							if (typePlan.equalsIgnoreCase("ML")) {
+								ms.setMediaFormat(atc.getCdCheck().getText());
+							} else {
+								ms.setMediaFormat(atc.getDvdCheck().getText());
 							}
+							
+							ms.setTypeTitle(typePlan);
+							
+							TitleEntity t = ms;
+							
+							if(tDAO.add(t)) {
+								MusicDAO mDAO = new MusicDAO();
+								if(mDAO.add(ms)) {
+									dialogMaker.makeDiagInfo("Music has been created successfully");
+									atc.cleanFields();
+								}
+							}
+							
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
 						}
-						
-						
-					} catch (SQLException e) {
-						e.printStackTrace();
 					}
-					
-					
 				}
 			});
 			
@@ -202,39 +205,40 @@ public class OptionTitleController implements Initializable {
 				@Override
 				public void handle(ActionEvent arg0) {
 					
-					VideoEntity vd = new VideoEntity();
-					TitleDAO tDAO = new TitleDAO();
-					try {
-						int code = tDAO.lastCode();
-						vd.setCode(++code);
-						vd.setName(atc.getNameField().getText());
-						double cost = Double.parseDouble(atc.getCostField().getText());
-						vd.setCost(cost);
-						vd.setGenre(atc.getGenreField().getText());
-						
-						LocalDate year = atc.getDatePicker().getValue();
-						vd.setYear(year.toString());
-						
-						vd.setDirector(atc.getAdditional1Field().getText());
-						vd.setDescription(atc.getAdditional2Field().getText());
-						vd.setMediaFormat(atc.getDvdCheck().getText());
-						vd.setTypeTitle(typePlan);
-						
-						TitleEntity t = vd;
-						
-						if(tDAO.add(t)) {
-							VideoDAO mDAO = new VideoDAO();
-							if(mDAO.add(vd)) {
-								dialogMaker.makeDiagInfo("Music has been created successfully");
-								atc.cleanFields();
+					if (atc.validateFields()) {
+						VideoEntity vd = new VideoEntity();
+						TitleDAO tDAO = new TitleDAO();
+						try {
+							int code = tDAO.lastCode();
+							vd.setCode(++code);
+							vd.setName(atc.getNameField().getText());
+							double cost = Double.parseDouble(atc.getCostField().getText());
+							vd.setCost(cost);
+							vd.setGenre(atc.getGenreField().getText());
+							
+							LocalDate year = atc.getDatePicker().getValue();
+							vd.setYear(year.toString());
+							
+							vd.setDirector(atc.getAdditional1Field().getText());
+							vd.setDescription(atc.getAdditional2Field().getText());
+							vd.setMediaFormat(atc.getDvdCheck().getText());
+							vd.setTypeTitle(typePlan);
+							
+							TitleEntity t = vd;
+							
+							if(tDAO.add(t)) {
+								VideoDAO mDAO = new VideoDAO();
+								if(mDAO.add(vd)) {
+									dialogMaker.makeDiagInfo("Music has been created successfully");
+									atc.cleanFields();
+								}
 							}
+							
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
 						}
-						
-						
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					
+					}					
 					
 				}
 			});
@@ -272,38 +276,39 @@ public class OptionTitleController implements Initializable {
 				@Override
 				public void handle(ActionEvent arg0) {
 					
-					TVEntity tv = new TVEntity();
-					TitleDAO tDAO = new TitleDAO();
-					try {
-						int code = tDAO.lastCode();
-						tv.setCode(++code);
-						tv.setName(atc.getNameField().getText());
-						double cost = Double.parseDouble(atc.getCostField().getText());
-						tv.setCost(cost);
-						tv.setGenre(atc.getGenreField().getText());
-						
-						LocalDate year = atc.getDatePicker().getValue();
-						tv.setYear(year.toString());
-						
-						tv.setCharacterSeries(atc.getAdditional1Field().getText());
-						tv.setMediaFormat(atc.getDvdCheck().getText());
-						tv.setTypeTitle(typePlan);
-						
-						TitleEntity t = tv;
-						
-						if(tDAO.add(t)) {
-							TVDAO mDAO = new TVDAO();
-							if(mDAO.add(tv)) {
-								dialogMaker.makeDiagInfo("Music has been created successfully");
-								atc.cleanFields();
+					if (atc.validateFields()) {
+						TVEntity tv = new TVEntity();
+						TitleDAO tDAO = new TitleDAO();
+						try {
+							int code = tDAO.lastCode();
+							tv.setCode(++code);
+							tv.setName(atc.getNameField().getText());
+							double cost = Double.parseDouble(atc.getCostField().getText());
+							tv.setCost(cost);
+							tv.setGenre(atc.getGenreField().getText());
+							
+							LocalDate year = atc.getDatePicker().getValue();
+							tv.setYear(year.toString());
+							
+							tv.setCharacterSeries(atc.getAdditional1Field().getText());
+							tv.setMediaFormat(atc.getDvdCheck().getText());
+							tv.setTypeTitle(typePlan);
+							
+							TitleEntity t = tv;
+							
+							if(tDAO.add(t)) {
+								TVDAO mDAO = new TVDAO();
+								if(mDAO.add(tv)) {
+									dialogMaker.makeDiagInfo("Music has been created successfully");
+									atc.cleanFields();
+								}
 							}
+							
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
 						}
-						
-						
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					
+					}					
 					
 				}
 			});

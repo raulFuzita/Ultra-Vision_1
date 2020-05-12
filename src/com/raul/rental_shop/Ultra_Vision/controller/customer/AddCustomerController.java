@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
@@ -42,6 +43,7 @@ public class AddCustomerController implements Initializable {
 	@FXML private Button addBtn;
 	
 	private AnchorPane pane = null;
+	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -56,79 +58,81 @@ public class AddCustomerController implements Initializable {
 		this.privilegeBox.getSelectionModel().select(0);
 		this.memberBox.getSelectionModel().select(0);
 		
-		DatePickerFormat.format(birthdayPick, "dd-MM-yyyy");
+		DatePickerFormat.format(birthdayPick, "dd/MM/yyyy");
 	}
 	
 	@FXML
 	public void actionAdd() {
 		
-		CustomerEntity user = new CustomerEntity();
-		user.setFirstname(nameField.getText());
-		user.setLastname(surnameField.getText());
-		user.setPhonenumber(phoneField.getText());
-		
-		LocalDate birthday = birthdayPick.getValue();
-		
-		user.setBirthday(birthday.toString());
-		
-		user.setStreet(streetField.getText());
-		user.setCity(cityField.getText());
-		user.setCountry(countryField.getText());
-		
-		user.setMembershipPlan(memberBox.getValue());
-		
-		int memberPlanId = this.memberBox.getSelectionModel()
-				.getSelectedIndex();
-
-		switch(memberPlanId) {
-		
-		case 0:
-			user.setMembershipPlan("ML");
-		break;
-
-		case 1:
-			user.setMembershipPlan("VL");
-		break;
-
-		case 2:
-			user.setMembershipPlan("TL");
-		break;
-
-		case 3:
-			user.setMembershipPlan("PR");
-		break;
-		
-		default:
-			user.setMembershipPlan("ML");
-
-		}
-		
-		user.setPrivilege(privilegeBox.getValue());
-		user.setPassword(passwordField.getText());
-		
-		System.out.println(user);
+		if (this.validateFields()) {
+			CustomerEntity user = new CustomerEntity();
+			user.setFirstname(nameField.getText());
+			user.setLastname(surnameField.getText());
+			user.setPhonenumber(phoneField.getText());
 			
-		String msg = "Do you really want to add this user?";
-		FactoryDialogWindow fdw = new FactoryDialogWindow();
-		Dialog dig = fdw.makeDiagOption(msg);
+			LocalDate birthday = birthdayPick.getValue();
+			
+			user.setBirthday(birthday.toString());
+			
+			user.setStreet(streetField.getText());
+			user.setCity(cityField.getText());
+			user.setCountry(countryField.getText());
+			
+			user.setMembershipPlan(memberBox.getValue());
+			
+			int memberPlanId = this.memberBox.getSelectionModel()
+					.getSelectedIndex();
 
-		if (dig.isOption()) {
+			switch(memberPlanId) {
+			
+			case 0:
+				user.setMembershipPlan("ML");
+			break;
 
-			CustomerDAO dao = new CustomerDAO();
+			case 1:
+				user.setMembershipPlan("VL");
+			break;
 
-			try {
-				if (dao.add(user)) {
-					msg = "User has been created successfully";
-				} else {
-					msg = "Something happended user wasn't created.";
+			case 2:
+				user.setMembershipPlan("TL");
+			break;
+
+			case 3:
+				user.setMembershipPlan("PR");
+			break;
+			
+			default:
+				user.setMembershipPlan("ML");
+
+			}
+			
+			user.setPrivilege(privilegeBox.getValue());
+			user.setPassword(passwordField.getText());
+			
+			System.out.println(user);
+				
+			String msg = "Do you really want to add this user?";
+			FactoryDialogWindow fdw = new FactoryDialogWindow();
+			Dialog dig = fdw.makeDiagOption(msg);
+
+			if (dig.isOption()) {
+
+				CustomerDAO dao = new CustomerDAO();
+
+				try {
+					if (dao.add(user)) {
+						msg = "User has been created successfully";
+					} else {
+						msg = "Something happended user wasn't created.";
+					}
+
+					fdw.makeDiagInfo(msg);
+					this.cleanFields();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 
-				fdw.makeDiagInfo(msg);
-				this.cleanFields();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
-
 		}
 
 	}
@@ -146,6 +150,58 @@ public class AddCustomerController implements Initializable {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private boolean validateFields() {
+		
+		String name = this.nameField.getText();
+		String surname = this.surnameField.getText();
+		
+		String birthday = "";
+		
+		if(this.birthdayPick.getValue() != null) {
+			LocalDate date = this.birthdayPick.getValue();
+			birthday = date.toString();
+			birthday = DateFormat.format(birthday, "yyyy-MM-dd", "dd/MM/yyyy");
+		}
+		
+		String street = this.streetField.getText();
+		String city = this.cityField.getText();
+		String country = this.countryField.getText();
+		String password = this.passwordField.getText();
+		
+		if (name.isEmpty()) {
+			this.fdw.makeDiagInfo("The field name must be filled");
+			return false;
+		} 
+		if (surname.isEmpty()) {
+			this.fdw.makeDiagInfo("The field surname must be filled");
+			return false;
+		}
+		
+		if (!birthday.matches("^(3[01]|[12][0-9]|0[1-9]])/(1[0-2]|0[1-9])/[0-9]{4}$")) {
+			this.fdw.makeDiagInfo("Wrong date format, please the supported "
+					+ "\nformat is dd/MM/yyyy");
+			return false;
+		} 
+		if (street.isEmpty()) {
+			this.fdw.makeDiagInfo("The field street must be filled");
+			return false;
+		} 
+		if (city.isEmpty()) {
+			this.fdw.makeDiagInfo("The field city must be filled");
+			return false;
+		} 
+		if (country.isEmpty()) {
+			this.fdw.makeDiagInfo("The field country must be filled");
+			return false;
+		} 
+		if (password.isEmpty()) {
+			this.fdw.makeDiagInfo("The field password must be filled");
+			return false;
+		}
+		
+		return true;
 	}
 	
 	@SuppressWarnings("unused")

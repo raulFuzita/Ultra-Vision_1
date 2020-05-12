@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -24,7 +26,7 @@ public class EditTitleController implements Initializable {
 	@FXML private TextField genreField;
 	@FXML private TextField additional1Field;
 	@FXML private TextField additional2Field;
-	@FXML private TextField yearField;
+	@FXML private DatePicker datePicker;
 	@FXML private Label additional1Label;
 	@FXML private Label additional2Label;
 	@FXML private ToggleGroup mediaGroup;
@@ -41,6 +43,7 @@ public class EditTitleController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		DatePickerFormat.format(datePicker, "dd-MM-yyyy");
 	}
 	
 	@FXML
@@ -111,8 +114,8 @@ public class EditTitleController implements Initializable {
 		return updateBtn;
 	}
 
-	public TextField getYearField() {
-		return yearField;
+	public DatePicker getDatePicker() {
+		return datePicker;
 	}
 
 }

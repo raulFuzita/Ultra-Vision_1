@@ -3,6 +3,7 @@ package com.raul.rental_shop.Ultra_Vision.controller.title;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -21,6 +22,7 @@ import com.raul.rental_shop.Ultra_Vision.model.title.TitleDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.VideoDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.VideoEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
@@ -32,6 +34,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -59,6 +62,7 @@ public class TitleController implements Initializable {
 	@FXML private Button basketBtn;
 	@FXML private Button viewBtn;
 	@FXML private Button addBtn;
+	@FXML private Label countBkLabel;
 	
 	private AnchorPane pane = null;
 	private TitleEntity rowData = null;
@@ -72,7 +76,8 @@ public class TitleController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		this.populateTableView();
-		
+		int counter = Session.INSTANCE.getTitles().size();
+		countBkLabel.setText(""+counter);
 		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
 		this.table.setRowFactory( tv -> {
 			TableRow<TitleEntity> row = new TableRow<>();
@@ -168,6 +173,15 @@ public class TitleController implements Initializable {
 			int rentedTitle = Session.INSTANCE.getTitles().size();
 			int id = Session.INSTANCE.get().getMembershipCardNumber();
 			int rents = 0;
+			String membershipUser = Session.INSTANCE.get().getMembershipPlan();
+			String membershipTitle = this.rowData.getTypeTitle();
+			boolean allowedBasket = false;
+			
+			if (membershipUser.equalsIgnoreCase(membershipTitle)) {
+				allowedBasket = true;
+			} else if (membershipUser.equalsIgnoreCase("PR")) {
+				allowedBasket = true;
+			}
 			
 			RentalDAO dao = new RentalDAO();
 			
@@ -180,10 +194,18 @@ public class TitleController implements Initializable {
 			rentedTitle += rents;
 			
 			if (rentedTitle < 4) {
-				CustomerEntity c = Session.INSTANCE.get();
-				CheckoutEntity ce = new CheckoutEntity(c, this.rowData);
-				Session.INSTANCE.getTitles().add(ce);
-				System.out.println("Title's added successfully");
+				if (allowedBasket) {
+					CustomerEntity c = Session.INSTANCE.get();
+					CheckoutEntity ce = new CheckoutEntity(c, this.rowData);
+					Session.INSTANCE.getTitles().add(ce);
+					int counter = Session.INSTANCE.getTitles().size();
+					countBkLabel.setText(""+counter);
+					System.out.println("Title's added successfully");
+				} else {
+					this.dialogMaker.makeDiagInfo(
+						"Your membership doesn't support this plan. "
+						+ "\nPlease, upgrade your membership.");
+				}
 			} else {
 				this.dialogMaker.makeDiagInfo("You can't rent more than 4 titles!");
 			}
@@ -259,6 +281,10 @@ public class TitleController implements Initializable {
 				stc.getGenreField().setText(this.rowData.getGenre());
 				stc.getMediaLabel().setText(this.rowData.getMediaFormat());
 				stc.getCostField().setText("€ " + this.rowData.getCost());
+				
+				String date = this.rowData.getYear();
+				date = DateFormat.format(date, "yyyy-MM-dd", "dd/MM/yyyy");
+				stc.getYearField().setText(date);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -352,9 +378,9 @@ public class TitleController implements Initializable {
 				etc.getNameField().setText(this.rowData.getName());
 				etc.getGenreField().setText(this.rowData.getGenre());
 				etc.getCostField().setText("" + this.rowData.getCost());
-				etc.getYearField().setText(this.rowData.getYear());
-				
+				etc.getDatePicker().setValue(LocalDate.parse(this.rowData.getYear()));
 				etc.getUpdateBtn().setOnAction(new EventHandler<ActionEvent>() {
+					
 					@Override
 					public void handle(ActionEvent arg0) {
 						
@@ -386,7 +412,12 @@ public class TitleController implements Initializable {
 						t.setCode(rowData.getCode());
 						t.setName(etc.getNameField().getText());
 						t.setGenre(etc.getGenreField().getText());
-						t.setYear(rowData.getYear());
+						
+						
+						LocalDate year = etc.getDatePicker().getValue();
+						t.setYear(year.toString());
+						
+						
 						t.setTypeTitle(rowData.getTypeTitle());
 						
 						double cost = Double.parseDouble(etc.getCostField().getText());

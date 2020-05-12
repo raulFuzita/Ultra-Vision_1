@@ -25,6 +25,7 @@ public class ShowTitleController implements Initializable {
 	@FXML private Label additional1Field;
 	@FXML private Label additional2Label;
 	@FXML private Label additional2Field;
+	@FXML private Label yearField;
 	@FXML private Pane mainDiv;
 	@FXML private Button closeBtn;
 	
@@ -81,6 +82,9 @@ public class ShowTitleController implements Initializable {
 	public Label getCostField() {
 		return costField;
 	}
-	
+
+	public Label getYearField() {
+		return yearField;
+	}
 	
 }

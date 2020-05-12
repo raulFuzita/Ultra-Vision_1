@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -64,6 +67,10 @@
                   </LinearGradient>
                </textFill>
             </Label>
+            <Label id="basket" fx:id="countBkLabel" layoutX="229.0" layoutY="18.0" prefHeight="35.0" prefWidth="69.0" styleClass="icon-size" stylesheets="@../css/stylesheet.css" text="0" textFill="RED">
+               <padding>
+                  <Insets left="40.0" />
+               </padding></Label>
          </children>
       </Pane>
    </children>

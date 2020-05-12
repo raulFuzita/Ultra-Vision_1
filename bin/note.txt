@@ -40,3 +40,24 @@ String strQuery = "SELECT r, concat(c.firstname, ' ', c.lastname) AS fullname, "
 					stc.getAdditional1Field().setText(tv.getCharacterSeries());
 					
 				}
+				
+				
+				
+// ===============================================================
+
+String birthday = this.birthdayPick.getPromptText();
+		
+		// https://www.java-examples.com/convert-date-string-one-format-another-format-using-simpledateformat
+		SimpleDateFormat sdfSource = new SimpleDateFormat("dd/MM/yyyy");
+		
+		try {
+			Date date = (Date) sdfSource.parse(birthday);
+			SimpleDateFormat sdfDestination = new SimpleDateFormat("yyyy-MM-dd");
+			birthday = sdfDestination.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		this.customer.setBirthday(birthday);
+		
+

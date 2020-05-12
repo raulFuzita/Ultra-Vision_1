@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -15,8 +16,16 @@
          <children>
             <Label layoutX="263.0" layoutY="30.0" text="Title Menu">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.9095238095238095" startX="1.0" startY="0.05714285714285714">
+                     <stops>
+                        <Stop color="#6b299a" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Accordion layoutX="31.0" layoutY="85.0" prefHeight="370.0" prefWidth="582.0">
               <panes>

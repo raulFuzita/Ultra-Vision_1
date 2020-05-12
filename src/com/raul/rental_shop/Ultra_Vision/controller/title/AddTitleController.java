@@ -2,18 +2,17 @@ package com.raul.rental_shop.Ultra_Vision.controller.title;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.raul.rental_shop.Ultra_Vision.model.DAO;
-import com.raul.rental_shop.Ultra_Vision.model.title.DAOFactory;
 import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
+import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -27,7 +26,7 @@ public class AddTitleController implements Initializable {
 	@FXML private TextField genreField;
 	@FXML private TextField additional1Field;
 	@FXML private TextField additional2Field;
-	@FXML private TextField yearField;
+	@FXML private DatePicker datePicker;
 	@FXML private CheckBox cdCheck;
 	@FXML private CheckBox dvdCheck;
 	@FXML private CheckBox bluerayCheck;
@@ -45,6 +44,7 @@ public class AddTitleController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		DatePickerFormat.format(datePicker, "dd-MM-yyyy");
 	}
 	
 	@FXML
@@ -74,7 +74,7 @@ public class AddTitleController implements Initializable {
 		this.genreField.setText("");
 		this.additional1Field.setText("");
 		this.additional2Field.setText("");
-		this.yearField.setText("");
+		this.datePicker.setValue(null);
 	}
 
 	public CheckBox getDvdCheck() {
@@ -121,8 +121,8 @@ public class AddTitleController implements Initializable {
 		return additional2Label;
 	}
 
-	public TextField getYearField() {
-		return yearField;
+	public DatePicker getDatePicker() {
+		return datePicker;
 	}
 
 	public Button getAddBtn() {

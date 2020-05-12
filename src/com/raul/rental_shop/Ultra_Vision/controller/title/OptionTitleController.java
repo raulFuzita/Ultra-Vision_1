@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -128,7 +129,10 @@ public class OptionTitleController implements Initializable {
 						double cost = Double.parseDouble(atc.getCostField().getText());
 						ms.setCost(cost);
 						ms.setGenre(atc.getGenreField().getText());
-						ms.setYear(atc.getYearField().getText());
+						
+						LocalDate year = atc.getDatePicker().getValue();
+						ms.setYear(year.toString());
+						
 						ms.setArtist(atc.getAdditional1Field().getText());
 						ms.setAlbum(atc.getAdditional2Field().getText());
 						
@@ -207,7 +211,10 @@ public class OptionTitleController implements Initializable {
 						double cost = Double.parseDouble(atc.getCostField().getText());
 						vd.setCost(cost);
 						vd.setGenre(atc.getGenreField().getText());
-						vd.setYear(atc.getYearField().getText());
+						
+						LocalDate year = atc.getDatePicker().getValue();
+						vd.setYear(year.toString());
+						
 						vd.setDirector(atc.getAdditional1Field().getText());
 						vd.setDescription(atc.getAdditional2Field().getText());
 						vd.setMediaFormat(atc.getDvdCheck().getText());
@@ -274,7 +281,10 @@ public class OptionTitleController implements Initializable {
 						double cost = Double.parseDouble(atc.getCostField().getText());
 						tv.setCost(cost);
 						tv.setGenre(atc.getGenreField().getText());
-						tv.setYear(atc.getYearField().getText());
+						
+						LocalDate year = atc.getDatePicker().getValue();
+						tv.setYear(year.toString());
+						
 						tv.setCharacterSeries(atc.getAdditional1Field().getText());
 						tv.setMediaFormat(atc.getDvdCheck().getText());
 						tv.setTypeTitle(typePlan);

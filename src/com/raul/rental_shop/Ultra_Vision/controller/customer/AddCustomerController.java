@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
@@ -54,6 +55,8 @@ public class AddCustomerController implements Initializable {
 		
 		this.privilegeBox.getSelectionModel().select(0);
 		this.memberBox.getSelectionModel().select(0);
+		
+		DatePickerFormat.format(birthdayPick, "dd-MM-yyyy");
 	}
 	
 	@FXML

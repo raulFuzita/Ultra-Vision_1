@@ -15,6 +15,7 @@ import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalDAO;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
 import javafx.collections.FXCollections;
@@ -45,7 +46,6 @@ public class RentalController implements Initializable {
 	@FXML private Pane mainDiv;
 	
 	@FXML private Button deleteBtn;
-	@FXML private Button editBtn;
 	@FXML private Button viewBtn;
 	@FXML private Button returnedBtn;
 	
@@ -64,7 +64,6 @@ public class RentalController implements Initializable {
 		
 		if (!c.getPrivilege().equalsIgnoreCase("admin")) {
 			this.deleteBtn.setVisible(false);
-			this.editBtn.setVisible(false);
 		}
 		
 		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
@@ -194,8 +193,16 @@ public class RentalController implements Initializable {
 				this.pane = loader.load();
 				ShowRentalController src = loader.getController();
 				
-				src.setRentedAtLabel(this.rowData.getRentAt().toString());
-				src.setReturnAtLable(this.rowData.getReturnAt().toString());
+				String from = "yyyy-MM-dd hh:mm:ss", to = "hh:mm:ss dd/MM/yyyy";
+				String date = this.rowData.getRentAt().toString();
+				date = DateFormat.format(date, from, to);
+				src.setRentedAtLabel(date);
+
+				date = this.rowData.getReturnAt().toString();
+				date = DateFormat.format(date, from, to);
+				src.setReturnAtLable(date);
+				
+				
 				src.setMembershipLabel(""+this.rowData.getCustomerMembershipNumber());
 				src.setCustomerLabel(this.rowData.getFullname());
 				src.setTitleLabel(this.rowData.getTitleName());
@@ -245,6 +252,7 @@ public class RentalController implements Initializable {
 			
 			rentAtCol.setCellValueFactory(new PropertyValueFactory<>("RentAt"));
 			returnAtCol.setCellValueFactory(new PropertyValueFactory<>("ReturnAt"));
+			
 			customerCol.setCellValueFactory(new PropertyValueFactory<>("Fullname"));
 			membershipCol.setCellValueFactory(
 						new PropertyValueFactory<>("CustomerMembershipNumber"));

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,7 +82,11 @@ public class ShowCustomerController implements Initializable {
 		this.nameLabel.setText(c.getFirstname());
 		this.surnameLabel.setText(c.getLastname());
 		this.phoneLabel.setText(c.getPhonenumber());
-		this.birthdayLabel.setText(c.getBirthday());
+		
+		String date = c.getBirthday();
+		date = DateFormat.format(date, "yyyy-MM-dd", "dd/MM/yyyy");
+		this.birthdayLabel.setText(date);
+		
 		this.streetLabel.setText(c.getStreet());
 		this.cityLabel.setText(c.getCity());
 		this.countryLabel.setText(c.getCountry());

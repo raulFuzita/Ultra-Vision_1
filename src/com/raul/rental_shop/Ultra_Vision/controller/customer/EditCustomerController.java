@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
@@ -26,6 +28,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.StringConverter;
 
 public class EditCustomerController implements Initializable {
 
@@ -56,6 +59,8 @@ public class EditCustomerController implements Initializable {
 				"Video Lover",
 				"TV Lover",
 				"Premium");
+		
+		DatePickerFormat.format(birthdayPick, "dd-MM-yyyy");
 	}
 	
 	@FXML
@@ -104,20 +109,9 @@ public class EditCustomerController implements Initializable {
 		this.customer.setLastname(this.surnameField.getText());
 		this.customer.setPhonenumber(this.phoneField.getText());
 		
-		String birthday = this.birthdayPick.getPromptText();
+		LocalDate birthday = this.birthdayPick.getValue();
 		
-		// https://www.java-examples.com/convert-date-string-one-format-another-format-using-simpledateformat
-		SimpleDateFormat sdfSource = new SimpleDateFormat("dd/MM/yyyy");
-		
-		try {
-			Date date = (Date) sdfSource.parse(birthday);
-			SimpleDateFormat sdfDestination = new SimpleDateFormat("yyyy-MM-dd");
-			birthday = sdfDestination.format(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		this.customer.setBirthday(birthday);
+		this.customer.setBirthday(birthday.toString());
 		this.customer.setStreet(this.streetField.getText());
 		this.customer.setCity(this.cityField.getText());
 		this.customer.setCountry(this.countryField.getText());

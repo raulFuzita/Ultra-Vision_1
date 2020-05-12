@@ -30,7 +30,6 @@ public class MusicDAO implements DAO<MusicEntity> {
 		
 		while(rs.next()) {
 			
-			m.setId(rs.getInt("id"));
 			m.setCode(rs.getInt("code"));
 			m.setArtist(rs.getString("artist"));
 			m.setAlbum(rs.getString("album"));
@@ -49,7 +48,6 @@ public class MusicDAO implements DAO<MusicEntity> {
 			
 			MusicEntity m = new MusicEntity();
 			
-			m.setId(rs.getInt("id"));
 			m.setCode(rs.getInt("code"));
 			m.setArtist(rs.getString("artist"));
 			m.setAlbum(rs.getString("album"));
@@ -131,7 +129,6 @@ public class MusicDAO implements DAO<MusicEntity> {
 		while(rs.next()) {
 			
 			MusicEntity m = new MusicEntity();
-			m.setId(rs.getInt("id"));
 			m.setCode(rs.getInt("code"));
 			m.setArtist(rs.getString("artist"));
 			m.setAlbum(rs.getString("album"));

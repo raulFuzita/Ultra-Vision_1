@@ -12,12 +12,12 @@
    <children>
       <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
-            <Label layoutX="311.0" layoutY="23.0" text="Search" textFill="WHITE">
+            <Label layoutX="300.0" layoutY="23.0" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="searchBtn" layoutX="366.0" layoutY="18.0" prefHeight="34.0" prefWidth="254.0" promptText="Search..." />
+            <TextField fx:id="searchField" layoutX="356.0" layoutY="18.0" onKeyReleased="#searchChanged" prefHeight="34.0" prefWidth="277.0" promptText="Search for name, membership card and phone" />
             <TableView fx:id="table" layoutX="7.0" layoutY="77.0" prefHeight="334.0" prefWidth="629.0">
               <columns>
                   <TableColumn fx:id="customerCol" prefWidth="107.0" text="Customer" />

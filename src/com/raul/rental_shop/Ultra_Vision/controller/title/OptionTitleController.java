@@ -168,13 +168,14 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionLiveConcertVideo() {
-		typePlan = "VL";
+		typePlan = "ML";
 		actionSong();
 	}
 	
 	@FXML
 	public void actionMovie() {
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
+		typePlan = "VL";
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -241,6 +242,7 @@ public class OptionTitleController implements Initializable {
 	@FXML
 	public void actionBoxSet() {
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
+		typePlan = "TV";
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();

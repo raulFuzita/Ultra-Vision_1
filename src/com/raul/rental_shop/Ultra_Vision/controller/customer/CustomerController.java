@@ -5,17 +5,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
-import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.DialogInfoController;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +28,7 @@ import javafx.scene.layout.Pane;
 public class CustomerController implements Initializable {
 
 	@FXML private AnchorPane rentalAnchor;
-	@FXML private TextField searchBtn;
+	@FXML private TextField searchField;
 	@FXML private TableView<CustomerEntity> table;
 	@FXML private TableColumn<CustomerEntity, String> customerCol;
 	@FXML private TableColumn<CustomerEntity, Integer> membershipCol;
@@ -66,6 +63,45 @@ public class CustomerController implements Initializable {
 			});
 			return row;
 		});
+	}
+	
+	@FXML
+	private void searchChanged() {
+		
+		String text = this.searchField.getText();
+		if (text.isEmpty()) {
+			populateTableView();
+		} else {
+			actionSearch(text);
+		}
+		
+		System.out.println("Working");
+		
+	}
+	
+	public void actionSearch(String text) {
+		
+		text = this.searchField.getText();
+		
+		CustomerDAO dao = new CustomerDAO();
+		List<CustomerEntity> list = null;
+		try {
+			list = dao.search(text);
+		
+		ObservableList<CustomerEntity> obs = FXCollections.observableArrayList(list);
+		
+		customerCol.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+		membershipCol.setCellValueFactory(new PropertyValueFactory<>("MembershipCardNumber"));
+		memberPlan.setCellValueFactory(new PropertyValueFactory<>("MembershipPlan"));
+		phoneCol.setCellValueFactory(new PropertyValueFactory<>("Phonenumber"));
+		addressCol.setCellValueFactory(new PropertyValueFactory<>("Street"));
+		
+		this.table.setItems(obs);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML

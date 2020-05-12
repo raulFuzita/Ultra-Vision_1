@@ -81,6 +81,19 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
+                        <Label text="Year:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="yearField" prefHeight="30.0" prefWidth="198.0" promptText="10-02-2020 or 10/02/2020">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0">
@@ -94,7 +107,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="367.0">
                                  <children>
-                                    <Label prefHeight="20.0" prefWidth="88.0" text="Additional1" textFill="WHITE">
+                                    <Label fx:id="additional1Label" prefHeight="20.0" prefWidth="88.0" text="Additional1" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -114,7 +127,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="367.0">
                                  <children>
-                                    <Label prefHeight="20.0" prefWidth="87.0" text="Additional2" textFill="WHITE">
+                                    <Label fx:id="additional2Label" prefHeight="20.0" prefWidth="87.0" text="Additional2" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -147,42 +160,45 @@
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="237.0">
-                                 <children>
-                                    <CheckBox fx:id="cdCheck" mnemonicParsing="false" text="CD" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                 </children>
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="237.0">
                                  <children>
-                                    <CheckBox fx:id="dvdCheck" mnemonicParsing="false" text="DVD" textFill="WHITE">
+                                    <RadioButton fx:id="cdRadio" mnemonicParsing="false" text="CD" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
-                                    </CheckBox>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="mediaGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="237.0">
+                                 <children>
+                                    <RadioButton fx:id="dvdRadio" mnemonicParsing="false" text="DVD" textFill="WHITE" toggleGroup="$mediaGroup">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </RadioButton>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="237.0">
                                  <children>
-                                    <CheckBox fx:id="bluerayCheck" mnemonicParsing="false" text="BLUERAY" textFill="WHITE">
+                                    <RadioButton fx:id="bluerayRadio" mnemonicParsing="false" text="BLUERAY" textFill="WHITE" toggleGroup="$mediaGroup">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
-                                    </CheckBox>
+                                    </RadioButton>
                                  </children>
                               </HBox>
                            </children>

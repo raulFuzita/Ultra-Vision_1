@@ -5,4 +5,5 @@ public interface Dialog {
 	public String getTextArea();
 	public void setTextArea(String text);
 	public boolean isOption();
+	public String output();
 }

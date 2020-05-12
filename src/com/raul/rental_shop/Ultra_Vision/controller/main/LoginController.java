@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import com.raul.rental_shop.Ultra_Vision.model.Session;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.model.customer.MembershipCardDAO;
+import com.raul.rental_shop.Ultra_Vision.model.customer.MembershipCardEntity;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -71,6 +73,8 @@ public class LoginController implements Initializable {
 		if (valMemberInput()) {
 			
 			CustomerDAO dao = new CustomerDAO();
+			MembershipCardEntity m = new MembershipCardEntity();
+			MembershipCardDAO mDAO = new MembershipCardDAO();
 			
 			try {
 				
@@ -79,6 +83,19 @@ public class LoginController implements Initializable {
 				if(user.getPassword().equals(password)) {
 					System.out.println("You're logged");
 					Session.INSTANCE.set(user);
+					
+					m = mDAO.get(user.getMembershipCardNumber());
+					
+					if (m.getMembershipCardNumber() == 0) {
+						
+						m.setMembershipCardNumber(user.getMembershipCardNumber());
+						m.setPoints(0);
+						
+						if (!mDAO.add(m)) {
+							System.out.println("Error to create a Membership card");
+						}
+					}
+					
 					root = (Stage) loginAnchor.getScene().getWindow();
 					loadMainView();
 					root.close();

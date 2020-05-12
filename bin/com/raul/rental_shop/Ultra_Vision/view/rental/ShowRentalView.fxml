@@ -73,7 +73,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="150.0" text="000000001" textFill="WHITE">
+                        <Label fx:id="membershipLabel" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="150.0" text="000000001" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -89,7 +89,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="319.0" layoutY="27.0" prefHeight="20.0" prefWidth="198.0" text="John Doe" textFill="WHITE">
+                        <Label fx:id="customerLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="319.0" layoutY="27.0" prefHeight="20.0" prefWidth="198.0" text="John Doe" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -109,7 +109,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="237.0" text="Young Folks" textFill="WHITE">
+                        <Label fx:id="titleLabel" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="27.0" prefHeight="20.0" prefWidth="237.0" text="Young Folks" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -125,7 +125,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="322.0" layoutY="27.0" prefHeight="20.0" prefWidth="227.0" text="0000000000" textFill="WHITE">
+                        <Label fx:id="codeLabel" alignment="CENTER_RIGHT" layoutX="322.0" layoutY="27.0" prefHeight="20.0" prefWidth="227.0" text="0000000000" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -192,7 +192,7 @@
                                           <Insets left="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="198.0" text="Music Lover" textFill="WHITE">
+                                    <Label fx:id="titleTypeLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="198.0" text="Music Lover" textFill="WHITE">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

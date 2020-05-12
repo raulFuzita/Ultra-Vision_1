@@ -30,7 +30,6 @@ public class TVDAO implements DAO<TVEntity> {
 		
 		while(rs.next()) {
 			
-			tv.setId(rs.getInt("id"));
 			tv.setCode(rs.getInt("code"));
 			tv.setCharacterSeries(rs.getString("characterSeries"));
 		}
@@ -48,7 +47,6 @@ public class TVDAO implements DAO<TVEntity> {
 			
 			TVEntity tv = new TVEntity();
 			
-			tv.setId(rs.getInt("id"));
 			tv.setCode(rs.getInt("code"));
 			tv.setCharacterSeries(rs.getString("characterSeries"));
 			
@@ -62,14 +60,13 @@ public class TVDAO implements DAO<TVEntity> {
 	@Override
 	public boolean add(TVEntity t) throws SQLException {
 		
-		String sql = "INSERT INTO tv (id, code, characterSeries)"
-				+ "VALUES (?, ?, ?)";
+		String sql = "INSERT INTO tv (code, characterSeries)"
+				+ "VALUES (?, ?)";
 		
 		PreparedStatement stmt = Database.setPreparedStmt(sql).getPreparedStmt();
 		
-		stmt.setInt(1, t.getId());
-		stmt.setInt(2, t.getCode());
-		stmt.setString(3, t.getCharacterSeries());
+		stmt.setInt(1, t.getCode());
+		stmt.setString(2, t.getCharacterSeries());
 		
 		int result = Database.getPreparedStmt().executeUpdate();
 		
@@ -127,8 +124,6 @@ public class TVDAO implements DAO<TVEntity> {
 		while(rs.next()) {
 			
 			TVEntity tv = new TVEntity();
-			tv.setId(rs.getInt("id"));
-			tv.setCode(rs.getInt("code"));
 			tv.setCharacterSeries(rs.getString("characterSeries"));
 			
 			this.tvs.add(tv);

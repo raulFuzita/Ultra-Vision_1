@@ -9,7 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -21,9 +24,13 @@ public class EditTitleController implements Initializable {
 	@FXML private TextField genreField;
 	@FXML private TextField additional1Field;
 	@FXML private TextField additional2Field;
-	@FXML private CheckBox cdCheck;
-	@FXML private CheckBox dvdCheck;
-	@FXML private CheckBox bluerayCheck;
+	@FXML private TextField yearField;
+	@FXML private Label additional1Label;
+	@FXML private Label additional2Label;
+	@FXML private ToggleGroup mediaGroup;
+	@FXML private RadioButton cdRadio;
+	@FXML private RadioButton dvdRadio;
+	@FXML private RadioButton bluerayRadio;
 	@FXML private Pane mainDiv;
 	
 	@FXML private Button cancelBtn;
@@ -54,6 +61,58 @@ public class EditTitleController implements Initializable {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+	}
+
+	public TextField getNameField() {
+		return nameField;
+	}
+
+	public TextField getCostField() {
+		return costField;
+	}
+
+	public TextField getGenreField() {
+		return genreField;
+	}
+
+	public TextField getAdditional1Field() {
+		return additional1Field;
+	}
+
+	public TextField getAdditional2Field() {
+		return additional2Field;
+	}
+
+	public Label getAdditional1Label() {
+		return additional1Label;
+	}
+
+	public Label getAdditional2Label() {
+		return additional2Label;
+	}
+
+	public ToggleGroup getMediaGroup() {
+		return mediaGroup;
+	}
+
+	public RadioButton getCdRadio() {
+		return cdRadio;
+	}
+
+	public RadioButton getDvdRadio() {
+		return dvdRadio;
+	}
+
+	public RadioButton getBluerayRadio() {
+		return bluerayRadio;
+	}
+
+	public Button getUpdateBtn() {
+		return updateBtn;
+	}
+
+	public TextField getYearField() {
+		return yearField;
 	}
 
 }

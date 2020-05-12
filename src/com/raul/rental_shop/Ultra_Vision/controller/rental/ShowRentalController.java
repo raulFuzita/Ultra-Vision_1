@@ -19,6 +19,11 @@ public class ShowRentalController implements Initializable {
 	@FXML private Label rentedAtLabel;
 	@FXML private Label returnAtLable;
 	@FXML private Label mediaLabel;
+	@FXML private Label membershipLabel;
+	@FXML private Label customerLabel;
+	@FXML private Label titleLabel;
+	@FXML private Label codeLabel;
+	@FXML private Label titleTypeLabel;
 	
 	@FXML private Button cancelBtn;
 	
@@ -45,4 +50,69 @@ public class ShowRentalController implements Initializable {
 		
 	}
 
+	public Label getRentedAtLabel() {
+		return rentedAtLabel;
+	}
+
+	public void setRentedAtLabel(String rentedAtLabel) {
+		this.rentedAtLabel.setText(rentedAtLabel);
+	}
+
+	public Label getReturnAtLable() {
+		return returnAtLable;
+	}
+
+	public void setReturnAtLable(String returnAtLable) {
+		this.returnAtLable.setText(returnAtLable);;
+	}
+
+	public Label getMediaLabel() {
+		return mediaLabel;
+	}
+
+	public void setMediaLabel(String mediaLabel) {
+		this.mediaLabel.setText(mediaLabel);
+	}
+
+	public Label getMembershipLabel() {
+		return membershipLabel;
+	}
+
+	public void setMembershipLabel(String membershipLabel) {
+		this.membershipLabel.setText(membershipLabel);
+	}
+
+	public Label getCustomerLabel() {
+		return customerLabel;
+	}
+
+	public void setCustomerLabel(String customerLabel) {
+		this.customerLabel.setText(customerLabel);
+	}
+
+	public Label getTitleLabel() {
+		return titleLabel;
+	}
+
+	public void setTitleLabel(String titleLabel) {
+		this.titleLabel.setText(titleLabel);
+	}
+
+	public Label getCodeLabel() {
+		return codeLabel;
+	}
+
+	public void setCodeLabel(String codeLabel) {
+		this.codeLabel.setText(codeLabel);
+	}
+
+	public Label getTitleTypeLabel() {
+		return titleTypeLabel;
+	}
+
+	public void setTitleTypeLabel(String titleTypeLabel) {
+		this.titleTypeLabel.setText(titleTypeLabel);
+	}
+
+	
 }

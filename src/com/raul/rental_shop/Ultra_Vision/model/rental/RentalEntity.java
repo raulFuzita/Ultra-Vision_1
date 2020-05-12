@@ -7,6 +7,7 @@ public class RentalEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private int id;
 	private int customerMembershipNumber;
 	private int titleCode;
 	private Timestamp rentAt;
@@ -14,10 +15,19 @@ public class RentalEntity implements Serializable {
 	private boolean isReturned;
 	
 	private String fullname;
-	
+	private String typePlan;
 	private String titleName;
-	
 	private String mediaFormat;
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getCustomerMembershipNumber() {
 		return this.customerMembershipNumber;
@@ -65,6 +75,14 @@ public class RentalEntity implements Serializable {
 
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+
+	public String getTypePlan() {
+		return typePlan;
+	}
+
+	public void setTypePlan(String typePlan) {
+		this.typePlan = typePlan;
 	}
 
 	public String getTitleName() {

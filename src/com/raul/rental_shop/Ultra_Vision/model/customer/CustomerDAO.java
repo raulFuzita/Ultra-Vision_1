@@ -154,14 +154,16 @@ public class CustomerDAO implements DAO<CustomerEntity> {
 	public List<CustomerEntity> search(String text) throws SQLException {
 		
 		String sql = "SELECT * FROM customer WHERE membership_card LIKE ? "
-				+ "OR firstname LIKE ? OR lastname LIKE ?";
+				+ "OR firstname LIKE ? OR lastname LIKE ?"
+				+ "OR phonenumber LIKE ?";
 		
 		Database.getInstance().connect().setPreparedStmt(sql);
 		PreparedStatement stmt = Database.getPreparedStmt();
 		
-		stmt.setString(1, text);
-		stmt.setString(2, text);
-		stmt.setString(3, text);
+		stmt.setString(1, text + "%");
+		stmt.setString(2, text + "%");
+		stmt.setString(3, text + "%");
+		stmt.setString(4, text + "%");
 		
 		ResultSet rs = Database.getPreparedStmt()
 				.executeQuery();

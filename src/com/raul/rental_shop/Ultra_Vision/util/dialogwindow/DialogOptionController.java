@@ -71,4 +71,10 @@ public class DialogOptionController implements Initializable, Dialog {
 	public void close() {
 		stage.close();
 	}
+
+	@Override
+	public String output() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

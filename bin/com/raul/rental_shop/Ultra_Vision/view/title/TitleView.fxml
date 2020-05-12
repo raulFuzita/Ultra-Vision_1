@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="searchBtn" layoutX="366.0" layoutY="18.0" prefHeight="34.0" prefWidth="254.0" promptText="Search..." />
+            <TextField fx:id="searchField" layoutX="366.0" layoutY="18.0" onKeyReleased="#searchChanged" prefHeight="34.0" prefWidth="268.0" promptText="Search for code, name, geren, and media" />
             <TableView fx:id="table" layoutX="7.0" layoutY="77.0" prefHeight="334.0" prefWidth="629.0">
               <columns>
                 <TableColumn fx:id="codeCol" prefWidth="110.0" text="Code" />

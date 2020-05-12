@@ -13,7 +13,7 @@
    <children>
       <Pane fx:id="mainDiv" prefHeight="484.0" prefWidth="643.0" styleClass="dark-bg" stylesheets="@../css/stylesheet.css">
          <children>
-            <TableView fx:id="tableCol" layoutX="11.0" layoutY="160.0" prefHeight="163.0" prefWidth="629.0">
+            <TableView fx:id="table" layoutX="11.0" layoutY="160.0" prefHeight="163.0" prefWidth="629.0">
               <columns>
                   <TableColumn fx:id="codeCol" prefWidth="70.0" text="Code" />
                 <TableColumn fx:id="nameCol" prefWidth="141.0" text="Name" />
@@ -25,10 +25,6 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="418.0" prefHeight="52.0" prefWidth="622.0" spacing="10.0">
                <children>
-                  <Button id="cancel-btn" fx:id="closeBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionClose" prefHeight="35.0" prefWidth="83.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Close" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
                   <Button id="delete-btn" fx:id="deleteBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionDelete" prefHeight="35.0" prefWidth="92.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -57,7 +53,7 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="347.0">
                      <children>
-                        <RadioButton fx:id="notUsePoints" mnemonicParsing="false" prefHeight="54.0" prefWidth="324.0" selected="true" text="Do not use points" textFill="WHITE">
+                        <RadioButton fx:id="notUsePoints" mnemonicParsing="false" onAction="#actionNotPoints" prefHeight="54.0" prefWidth="324.0" selected="true" text="Do not use points" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -68,7 +64,7 @@
                               <ToggleGroup fx:id="usePoints" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="yesUsePoints" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="319.0" text="Use points" textFill="WHITE" toggleGroup="$usePoints">
+                        <RadioButton fx:id="yesUsePoints" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#actionUsePoints" prefHeight="45.0" prefWidth="319.0" text="Use points" textFill="WHITE" toggleGroup="$usePoints">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -169,7 +165,7 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="326.0">
                      <children>
-                        <Label text="€ 0.0" textFill="#e71111">
+                        <Label fx:id="subtotalLabel" text="€ 0.0" textFill="#e71111">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

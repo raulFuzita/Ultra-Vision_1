@@ -31,6 +31,15 @@ public class FactoryDialogWindow {
 		return null;
 	}
 	
+	public Dialog makeDiagInput(String message) {
+		try {
+			return windowMaker("DialogInputWindow.fxml", message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	private Dialog windowMaker(final String filename, String message) 
 			throws IOException {
 		

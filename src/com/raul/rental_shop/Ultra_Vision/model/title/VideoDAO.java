@@ -30,7 +30,6 @@ public class VideoDAO implements DAO<VideoEntity>{
 		
 		while(rs.next()) {
 			
-			vd.setId(rs.getInt("id"));
 			vd.setCode(rs.getInt("code"));
 			vd.setDirector(rs.getString("director"));
 			vd.setDescription(rs.getString("description"));
@@ -50,7 +49,6 @@ public class VideoDAO implements DAO<VideoEntity>{
 			
 			VideoEntity vd = new VideoEntity();
 			
-			vd.setId(rs.getInt("id"));
 			vd.setCode(rs.getInt("code"));
 			vd.setDirector(rs.getString("director"));
 			vd.setDescription(rs.getString("description"));
@@ -132,7 +130,6 @@ public class VideoDAO implements DAO<VideoEntity>{
 		while(rs.next()) {
 			
 			VideoEntity vd = new VideoEntity();
-			vd.setId(rs.getInt("id"));
 			vd.setCode(rs.getInt("code"));
 			vd.setDirector(rs.getString("director"));
 			vd.setDescription(rs.getString("description"));

@@ -7,3 +7,36 @@ String strQuery = "SELECT r, concat(c.firstname, ' ', c.lastname) AS fullname, "
 	@ManyToOne
 	@JoinColumn(name = "membership_card")
 	private CustomerEntity customerEntity;
+	
+	
+	if (typePlan.equalsIgnoreCase("ML")) {
+					
+					stc.getAdditionla1Label().setText("Artist:");
+					stc.getAdditional2Label().setText("Album:");
+					MusicEntity ms = new MusicEntity();
+					MusicDAO dao = new MusicDAO();
+					ms = dao.get(this.rowData.getCode());
+					stc.getAdditional1Field().setText(ms.getArtist());
+					stc.getAdditional2Field().setText(ms.getAlbum());
+					
+				} else if (typePlan.equalsIgnoreCase("VL")) {
+					
+					stc.getAdditionla1Label().setText("Director:");
+					stc.getAdditional2Label().setText("Description:");
+					VideoEntity vd = new VideoEntity();
+					VideoDAO dao = new VideoDAO();
+					vd = dao.get(this.rowData.getCode());
+					stc.getAdditional1Field().setText(vd.getDirector());
+					stc.getAdditional2Field().setText(vd.getDescription());
+					
+				} else if (typePlan.equalsIgnoreCase("TV")) {
+					
+					stc.getAdditionla1Label().setText("Artist:");
+					stc.getAdditional2Label().setVisible(false);
+					stc.getAdditional2Field().setVisible(false);
+					TVEntity tv = new TVEntity();
+					TVDAO dao = new TVDAO();
+					tv = dao.get(this.rowData.getCode());
+					stc.getAdditional1Field().setText(tv.getCharacterSeries());
+					
+				}

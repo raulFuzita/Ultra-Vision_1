@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="popup" onMouseExited="#loseFocus" prefHeight="190.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.raul.rental_shop.Ultra_Vision.util.dialogwindow.DialogInputController">
+   <children>
+      <Pane layoutX="-9.0" layoutY="-7.0" prefHeight="190.0" prefWidth="450.0">
+         <children>
+            <TextArea fx:id="textArea" editable="false" layoutX="18.0" layoutY="25.0" prefHeight="65.0" prefWidth="425.0" styleClass="textDialog" stylesheets="@diag_style.css">
+               <font>
+                  <Font size="16.0" />
+               </font></TextArea>
+            <Button fx:id="noBtn" layoutX="383.0" layoutY="146.0" mnemonicParsing="false" onAction="#actionNo" prefHeight="36.0" prefWidth="60.0" text="No">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="yesBtn" layoutX="314.0" layoutY="146.0" mnemonicParsing="false" onAction="#actionYes" prefHeight="36.0" prefWidth="60.0" text="Yes">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="inputField" layoutX="78.0" layoutY="100.0" prefHeight="30.0" prefWidth="365.0" promptText="Enter a value...">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="25.0" layoutY="105.0" text="Input: ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

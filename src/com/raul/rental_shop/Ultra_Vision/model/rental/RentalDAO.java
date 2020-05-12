@@ -19,7 +19,7 @@ public class RentalDAO implements DAO<RentalEntity> {
 	public RentalEntity get(int index) throws SQLException {
 		
 		String sql = "SELECT r.*, CONCAT(c.firstname, ' ', c.lastname) AS fullname,"
-				+ " t.name, t.media_format FROM rental r"
+				+ " c.membership_plan, t.name, t.media_format FROM rental r"
 				+ " INNER JOIN customer c ON c.membership_card = r.customer_membership_card"
 				+ " INNER JOIN title t ON t.code = r.title_code"
 				+ " WHERE r.customer_membership_card = ?";
@@ -35,12 +35,17 @@ public class RentalDAO implements DAO<RentalEntity> {
 		
 		while(rs.next()) {
 			
+			rt.setId(rs.getInt("id"));
 			rt.setCustomerMembershipNumber(rs.getInt("customer_membership_card"));
 			rt.setTitleCode(rs.getInt("title_code"));
 			rt.setRentAt(Timestamp.valueOf(rs.getString("rent_at")));
 			rt.setReturnAt(Timestamp.valueOf(rs.getString("return_at")));
 			boolean returned = (rs.getByte("is_returned") == 1) ? true : false;
 			rt.setReturned(returned);
+			rt.setFullname(rs.getString("fullname"));
+			rt.setTypePlan(rs.getString("membership_plan"));
+			rt.setTitleName(rs.getString("name"));
+			rt.setMediaFormat(rs.getString("media_format"));
 		}
 		
 		return rt;
@@ -50,7 +55,7 @@ public class RentalDAO implements DAO<RentalEntity> {
 	public List<RentalEntity> getAll() throws SQLException {
 		
 		String sql = "SELECT r.*, CONCAT(c.firstname, ' ', c.lastname) AS fullname,"
-				+ " t.name, t.media_format FROM rental r"
+				+ " c.membership_plan, t.name, t.media_format FROM rental r"
 				+ " INNER JOIN customer c ON c.membership_card = r.customer_membership_card"
 				+ " INNER JOIN title t ON t.code = r.title_code";
 		
@@ -60,6 +65,7 @@ public class RentalDAO implements DAO<RentalEntity> {
 			
 			RentalEntity rt = new RentalEntity();
 			
+			rt.setId(rs.getInt("id"));
 			rt.setCustomerMembershipNumber(rs.getInt("customer_membership_card"));
 			rt.setTitleCode(rs.getInt("title_code"));
 			rt.setRentAt(Timestamp.valueOf(rs.getString("rent_at")));
@@ -67,6 +73,7 @@ public class RentalDAO implements DAO<RentalEntity> {
 			boolean returned = (rs.getByte("is_returned") == 1) ? true : false;
 			rt.setReturned(returned);
 			rt.setFullname(rs.getString("fullname"));
+			rt.setTypePlan(rs.getString("membership_plan"));
 			rt.setTitleName(rs.getString("name"));
 			rt.setMediaFormat(rs.getString("media_format"));
 			
@@ -102,11 +109,11 @@ public class RentalDAO implements DAO<RentalEntity> {
 	@Override
 	public boolean remove(RentalEntity t) throws SQLException {
 		
-		String sql = "DELETE FROM rental WHERE customer_membership_card = ?";
+		String sql = "DELETE FROM rental WHERE id = ?";
 		
 		Database.setPreparedStmt(sql)
 			.getPreparedStmt()
-			.setInt(1, t.getCustomerMembershipNumber());
+			.setInt(1, t.getId());
 		
 		int result = Database.getPreparedStmt().executeUpdate();
 		
@@ -140,15 +147,24 @@ public class RentalDAO implements DAO<RentalEntity> {
 	@Override
 	public List<RentalEntity> search(String text) throws SQLException {
 		
-		String sql = "SELECT * FROM rental WHERE customer_membership_card LIKE ? "
-				+ "OR title_code LIKE ? OR rent_at LIKE ?";
+		String sql = "SELECT r.*, CONCAT(c.firstname, ' ', c.lastname) AS fullname, "
+				+ " c.membership_plan, t.name, t.media_format FROM rental r"
+				+ " INNER JOIN customer c ON c.membership_card = r.customer_membership_card"
+				+ " INNER JOIN title t ON t.code = r.title_code"
+				+ " WHERE customer_membership_card LIKE ? "
+				+ " OR rent_at LIKE ? OR t.name LIKE ?"
+				+ " OR t.media_format LIKE ? OR c.firstname LIKE ?"
+				+ " OR c.lastname LIKE ?";
 		
 		Database.getInstance().connect().setPreparedStmt(sql);
 		PreparedStatement stmt = Database.getPreparedStmt();
 		
-		stmt.setString(1, text);
-		stmt.setString(2, text);
-		stmt.setString(3, text);
+		stmt.setString(1, text + "%");
+		stmt.setString(2, text + "%");
+		stmt.setString(3, text + "%");
+		stmt.setString(4, text + "%");
+		stmt.setString(5, text + "%");
+		stmt.setString(6, text + "%");
 		
 		ResultSet rs = Database.getPreparedStmt()
 				.executeQuery();
@@ -157,12 +173,17 @@ public class RentalDAO implements DAO<RentalEntity> {
 			
 			RentalEntity rt = new RentalEntity();
 			
+			rt.setId(rs.getInt("id"));
 			rt.setCustomerMembershipNumber(rs.getInt("customer_membership_card"));
 			rt.setTitleCode(rs.getInt("title_code"));
 			rt.setRentAt(Timestamp.valueOf(rs.getString("rent_at")));
 			rt.setReturnAt(Timestamp.valueOf(rs.getString("return_at")));
 			boolean returned = (rs.getByte("is_returned") == 1) ? true : false;
 			rt.setReturned(returned);
+			rt.setFullname(rs.getString("fullname"));
+			rt.setTypePlan(rs.getString("membership_plan"));
+			rt.setTitleName(rs.getString("name"));
+			rt.setMediaFormat(rs.getString("media_format"));
 			
 			this.rts.add(rt);
 		}
@@ -170,5 +191,27 @@ public class RentalDAO implements DAO<RentalEntity> {
 		return rts;
 	}
 
+	@SuppressWarnings("static-access")
+	public int ownerRents(int index) throws SQLException {
+		
+		String sql = "SELECT COUNT(customer_membership_card) AS rents"
+				+ " FROM rental WHERE customer_membership_card = ?";
+		
+		Database.setPreparedStmt(sql)
+			.getPreparedStmt()
+			.setInt(1, index);
+		
+		ResultSet rs = Database.getPreparedStmt()
+				.executeQuery();
+
+		int rents = 0;
+		
+		while(rs.next()) {
+			
+			rents = rs.getInt("rents");
+		}
+		
+		return rents;
+	}
 	
 }

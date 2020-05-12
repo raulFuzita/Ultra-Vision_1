@@ -132,14 +132,15 @@ public class TitleDAO implements DAO<TitleEntity> {
 	public List<TitleEntity> search(String text) throws SQLException {
 		
 		String sql = "SELECT * FROM title WHERE code LIKE ? "
-				+ "OR name LIKE ? OR genre LIKE ?";
+				+ "OR name LIKE ? OR genre LIKE ? OR media_format LIKE ?";
 		
 		Database.getInstance().connect().setPreparedStmt(sql);
 		PreparedStatement stmt = Database.getPreparedStmt();
 		
-		stmt.setString(1, text);
-		stmt.setString(2, text);
-		stmt.setString(3, text);
+		stmt.setString(1, text + "%");
+		stmt.setString(2, text + "%");
+		stmt.setString(3, text + "%");
+		stmt.setString(4, text + "%");
 		
 		ResultSet rs = Database.getPreparedStmt()
 				.executeQuery();

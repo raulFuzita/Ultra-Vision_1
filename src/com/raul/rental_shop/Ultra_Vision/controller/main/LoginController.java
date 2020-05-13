@@ -78,9 +78,12 @@ public class LoginController implements Initializable {
 			
 			try {
 				
-				CustomerEntity user = dao.get(Integer.parseInt(membNumber));
+				int id = Integer.parseInt(membNumber);
+				CustomerEntity user = dao.get(id);
 				
-				if(user.getPassword().equals(password)) {
+				String input = (user.getPassword() != null) ? user.getPassword() : "";
+				
+				if(input.equals(password)) {
 					System.out.println("You're logged");
 					Session.INSTANCE.set(user);
 					
@@ -100,7 +103,7 @@ public class LoginController implements Initializable {
 					loadMainView();
 					root.close();
 				} else {
-					System.out.println("Fails");
+					System.out.println("Fails: User doesn't exist");
 				}
 				
 			} catch (NumberFormatException | SQLException e) {
@@ -125,7 +128,7 @@ public class LoginController implements Initializable {
 	public boolean valMemberInput(){
 		
 		String inputText = this.membershipField.getText();
-		if (inputText.matches("([0-9])")) {
+		if (inputText.matches("^([0-9])+$")) {
 			this.memberNumLabel.setVisible(false);
 			return true;
 		}

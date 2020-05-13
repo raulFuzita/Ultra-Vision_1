@@ -1,16 +1,13 @@
 package com.raul.rental_shop.Ultra_Vision.controller.checkout;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import com.raul.rental_shop.Ultra_Vision.model.Session;
 import com.raul.rental_shop.Ultra_Vision.model.checkout.CheckoutEntity;
@@ -20,7 +17,6 @@ import com.raul.rental_shop.Ultra_Vision.model.customer.MembershipCardDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.MembershipCardEntity;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalDAO;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalEntity;
-import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
 import com.raul.rental_shop.Ultra_Vision.util.CreditCardValidation;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.Dialog;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
@@ -28,7 +24,6 @@ import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -67,7 +62,6 @@ public class CheckoutController implements Initializable {
 	@FXML private Button deleteBtn;
 	@FXML private Button payBtn;
 	
-	private AnchorPane pane = null;
 	private double value;
 	private double discount;
 	private int points;
@@ -222,15 +216,33 @@ public class CheckoutController implements Initializable {
 				if (this.cupom > 0) {
 					this.points -= 100;
 					this.cupom--;
-					mb.setMembershipCardNumber(re.getCustomerMembershipNumber());
 					mb.setPoints(points);
+					mb.setMembershipCardNumber(re.getCustomerMembershipNumber());
 					mDAO.update(mb);
-				}
+				} 
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		if (notUsePoints.isSelected()) {
+			
+			int userId = Session.INSTANCE.get().getMembershipCardNumber();
+			try {
+				mb = mDAO.get(userId);
+				int gainPoint = titles.size() * 10;
+				gainPoint += mb.getPoints();
+				mb.setPoints(gainPoint);
+				mb.setMembershipCardNumber(userId);
+				mDAO.update(mb);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		this.actionNotPoints();
 		
 		Session.INSTANCE.getTitles().clear();
 		this.value = 0;

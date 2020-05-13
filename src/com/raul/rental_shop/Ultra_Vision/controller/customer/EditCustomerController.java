@@ -3,11 +3,7 @@ package com.raul.rental_shop.Ultra_Vision.controller.customer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -29,7 +25,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.StringConverter;
 
 public class EditCustomerController implements Initializable {
 

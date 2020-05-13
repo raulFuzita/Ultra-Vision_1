@@ -51,11 +51,6 @@
 	-fx-background-position: 10px;
 }
 
-.dark-field {
-	-fx-border-bottom-color: #5b5a5a;
-	-fx-border-bottom: 2px;
-}
-
 .dark-bg {
 	-fx-background-color: #333333;
 }
@@ -66,7 +61,6 @@
 
 .btn {
 	-fx-background-color: #4caf50;
-	-fx-border: none;
 	-fx-background-color:
     linear-gradient(#8ab4ff 0%, #232723 25%, #373837 75%, #e492ff 100%),
     linear-gradient(#1a6dff, #c822ff),

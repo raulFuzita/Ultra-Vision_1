@@ -5,7 +5,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import com.raul.rental_shop.Ultra_Vision.model.title.TitleEntity;
 import com.raul.rental_shop.Ultra_Vision.util.dateformat.DateFormat;
 import com.raul.rental_shop.Ultra_Vision.util.datepickerformat.DatePickerFormat;
 import com.raul.rental_shop.Ultra_Vision.util.dialogwindow.FactoryDialogWindow;
@@ -14,10 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -30,9 +30,10 @@ public class AddTitleController implements Initializable {
 	@FXML private TextField additional1Field;
 	@FXML private TextField additional2Field;
 	@FXML private DatePicker datePicker;
-	@FXML private CheckBox cdCheck;
-	@FXML private CheckBox dvdCheck;
-	@FXML private CheckBox bluerayCheck;
+	@FXML private ToggleGroup mediaGroup;
+	@FXML private RadioButton cdRadio;
+	@FXML private RadioButton dvdRadio;
+	@FXML private RadioButton bluerayRadio;
 	@FXML private Label additional1Label;
 	@FXML private Label additional2Label;
 	@FXML private Label yearLabel;
@@ -42,7 +43,6 @@ public class AddTitleController implements Initializable {
 	@FXML private Button addBtn;
 	
 	private AnchorPane pane = null;
-	private TitleEntity titleEntity = null;
 	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
 	@Override
@@ -83,10 +83,6 @@ public class AddTitleController implements Initializable {
 	
 	public boolean validateFields() {
 		
-		String mediaCD = this.cdCheck.getText();
-		String mediaDVD = this.dvdCheck.getText();
-		String mediaBLUERAY = this.bluerayCheck.getText();
-		
 		String year = "";
 		
 		if(this.datePicker.getValue() != null) {
@@ -106,21 +102,9 @@ public class AddTitleController implements Initializable {
 			return false;
 		}
 		
-		if (mediaCD.isEmpty() && mediaDVD.isEmpty() && mediaBLUERAY.isEmpty()) {
-			this.fdw.makeDiagInfo("You must select one of the media formats");
-			return false;
-		}
-		
 		return true;
 	}
 
-	public CheckBox getDvdCheck() {
-		return dvdCheck;
-	}
-
-	public void setDvdCheck(CheckBox dvdCheck) {
-		this.dvdCheck = dvdCheck;
-	}
 
 	public TextField getNameField() {
 		return nameField;
@@ -142,13 +126,6 @@ public class AddTitleController implements Initializable {
 		return additional2Field;
 	}
 
-	public CheckBox getCdCheck() {
-		return cdCheck;
-	}
-
-	public CheckBox getBluerayCheck() {
-		return bluerayCheck;
-	}
 
 	public Label getAdditional1Label() {
 		return additional1Label;
@@ -165,6 +142,21 @@ public class AddTitleController implements Initializable {
 	public Button getAddBtn() {
 		return addBtn;
 	}
-	
+
+	public RadioButton getCdRadio() {
+		return cdRadio;
+	}
+
+	public RadioButton getDvdRadio() {
+		return dvdRadio;
+	}
+
+	public RadioButton getBluerayRadio() {
+		return bluerayRadio;
+	}
+
+	public ToggleGroup getMediaGroup() {
+		return mediaGroup;
+	}
 	
 }

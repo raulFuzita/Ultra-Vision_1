@@ -5,15 +5,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.Session;
 import com.raul.rental_shop.Ultra_Vision.model.checkout.CheckoutEntity;
-import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
+import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalDAO;
-import com.raul.rental_shop.Ultra_Vision.model.rental.RentalEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.TVDAO;
@@ -42,6 +42,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class TitleController implements Initializable {
@@ -63,6 +64,7 @@ public class TitleController implements Initializable {
 	@FXML private Button viewBtn;
 	@FXML private Button addBtn;
 	@FXML private Label countBkLabel;
+	@FXML private HBox bottomSide;
 	
 	private AnchorPane pane = null;
 	private TitleEntity rowData = null;
@@ -71,6 +73,7 @@ public class TitleController implements Initializable {
 	private VideoEntity vd;
 	private TVEntity tv;
 	private EditTitleController etc = null;
+	private CustomerEntity customer;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -78,6 +81,18 @@ public class TitleController implements Initializable {
 		this.populateTableView();
 		int counter = Session.INSTANCE.getTitles().size();
 		countBkLabel.setText(""+counter);
+		
+		customer = Session.INSTANCE.get();
+		
+		Optional<CustomerEntity> optional = Optional.ofNullable(customer);
+		CustomerEntity c = optional.orElse(new NullCustomerEntity());
+		
+		if (!c.getPrivilege().equalsIgnoreCase("admin")) {
+			this.deleteBtn.setVisible(false);
+			this.updateBtn.setVisible(false);
+			this.addBtn.setVisible(false);
+		}
+		
 		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
 		this.table.setRowFactory( tv -> {
 			TableRow<TitleEntity> row = new TableRow<>();

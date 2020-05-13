@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import com.raul.rental_shop.Ultra_Vision.model.Database;
 import com.raul.rental_shop.Ultra_Vision.view.main.BootstrapWindow;
@@ -28,7 +29,9 @@ public class UltraVision extends Application {
 			Database.connect();
 			launch(args);
 		} catch (Exception e) {
-			System.out.println("Test");
+			String content = "Database connection failed. Please, check the settings.";
+			System.out.println(content);
+			JOptionPane.showMessageDialog(null, content, "Ultra Vision", JOptionPane.ERROR_MESSAGE);
 			bootstrapWindow.dispose();
 		}
 	}

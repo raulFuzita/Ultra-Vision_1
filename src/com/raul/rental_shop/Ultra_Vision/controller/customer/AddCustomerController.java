@@ -204,7 +204,6 @@ public class AddCustomerController implements Initializable {
 		return true;
 	}
 	
-	@SuppressWarnings("unused")
 	private void cleanFields() {
 		this.nameField.setText("");
 		this.surnameField.setText("");

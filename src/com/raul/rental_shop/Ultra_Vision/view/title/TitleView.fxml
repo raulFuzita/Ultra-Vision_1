@@ -30,7 +30,7 @@
                   <TableColumn fx:id="mediaCol" prefWidth="67.0" text="Media" />
               </columns>
             </TableView>
-            <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="418.0" prefHeight="52.0" prefWidth="622.0" spacing="10.0">
+            <HBox fx:id="bottomSide" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="418.0" prefHeight="52.0" prefWidth="622.0" spacing="10.0">
                <children>
                   <Button id="delete-btn" fx:id="deleteBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionDelete" prefHeight="35.0" prefWidth="87.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Delete" textFill="WHITE">
                      <font>
@@ -40,15 +40,15 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
+                  <Button id="add-btn" fx:id="addBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionAdd" prefHeight="35.0" prefWidth="78.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Add" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                   <Button id="basket-btn" fx:id="basketBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionBasket" prefHeight="35.0" prefWidth="90.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Basket" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
                   <Button id="search-btn" fx:id="viewBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionView" prefHeight="35.0" prefWidth="79.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="View" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <Button id="add-btn" fx:id="addBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#actionAdd" prefHeight="35.0" prefWidth="78.0" styleClass="btn" stylesheets="@../css/stylesheet.css" text="Add" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>

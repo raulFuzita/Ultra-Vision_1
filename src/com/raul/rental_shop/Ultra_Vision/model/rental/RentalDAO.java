@@ -214,4 +214,97 @@ public class RentalDAO implements DAO<RentalEntity> {
 		return rents;
 	}
 	
+
+	@SuppressWarnings("static-access")
+	public List<RentalEntity> ownersItems(int membershipCard) throws SQLException {
+		
+		String sql = "SELECT r.*, CONCAT(c.firstname, ' ', c.lastname) AS fullname,"
+				+ " c.membership_plan, t.name, t.media_format FROM rental r"
+				+ " INNER JOIN customer c ON c.membership_card = r.customer_membership_card"
+				+ " INNER JOIN title t ON t.code = r.title_code"
+				+ " WHERE r.customer_membership_card = ?";
+		
+		
+		Database.getInstance().connect().setPreparedStmt(sql);
+		PreparedStatement stmt = Database.getPreparedStmt();
+		
+		stmt.setInt(1, membershipCard);
+		
+		ResultSet rs = Database.getPreparedStmt()
+				.executeQuery();
+		
+		while(rs.next()) {
+			
+			RentalEntity rt = new RentalEntity();
+			
+			rt.setId(rs.getInt("id"));
+			rt.setCustomerMembershipNumber(rs.getInt("customer_membership_card"));
+			rt.setTitleCode(rs.getInt("title_code"));
+			rt.setRentAt(Timestamp.valueOf(rs.getString("rent_at")));
+			rt.setReturnAt(Timestamp.valueOf(rs.getString("return_at")));
+			boolean returned = (rs.getByte("is_returned") == 1) ? true : false;
+			rt.setReturned(returned);
+			rt.setFullname(rs.getString("fullname"));
+			rt.setTypePlan(rs.getString("membership_plan"));
+			rt.setTitleName(rs.getString("name"));
+			rt.setMediaFormat(rs.getString("media_format"));
+			
+			this.rts.add(rt);
+		}
+		
+		return rts;
+	}
+	
+	@SuppressWarnings("static-access")
+	public List<RentalEntity> ownerSearch(int membershipCard, String text) throws SQLException {
+		
+		String sql = "SELECT r.*, CONCAT(c.firstname, ' ', c.lastname) AS fullname, "
+				+ " c.membership_plan, t.name, t.media_format FROM rental r"
+				+ " INNER JOIN customer c ON c.membership_card = r.customer_membership_card"
+				+ " INNER JOIN title t ON t.code = r.title_code"
+				+ " WHERE customer_membership_card = ? AND rent_at LIKE ? "
+				+ " OR customer_membership_card = ? AND t.name LIKE ?"
+				+ " OR customer_membership_card = ? AND t.media_format LIKE ? "
+				+ " OR customer_membership_card = ? AND c.firstname LIKE ?"
+				+ " OR customer_membership_card = ? AND c.lastname LIKE ?";
+		
+		Database.getInstance().connect().setPreparedStmt(sql);
+		PreparedStatement stmt = Database.getPreparedStmt();
+		
+		stmt.setInt(1, membershipCard);
+		stmt.setString(2, text + "%");
+		stmt.setInt(3, membershipCard);
+		stmt.setString(4, text + "%");
+		stmt.setInt(5, membershipCard);
+		stmt.setString(6, text + "%");
+		stmt.setInt(7, membershipCard);
+		stmt.setString(8, text + "%");
+		stmt.setInt(9, membershipCard);
+		stmt.setString(10, text + "%");
+		
+		ResultSet rs = Database.getPreparedStmt()
+				.executeQuery();
+		
+		while(rs.next()) {
+			
+			RentalEntity rt = new RentalEntity();
+			
+			rt.setId(rs.getInt("id"));
+			rt.setCustomerMembershipNumber(rs.getInt("customer_membership_card"));
+			rt.setTitleCode(rs.getInt("title_code"));
+			rt.setRentAt(Timestamp.valueOf(rs.getString("rent_at")));
+			rt.setReturnAt(Timestamp.valueOf(rs.getString("return_at")));
+			boolean returned = (rs.getByte("is_returned") == 1) ? true : false;
+			rt.setReturned(returned);
+			rt.setFullname(rs.getString("fullname"));
+			rt.setTypePlan(rs.getString("membership_plan"));
+			rt.setTitleName(rs.getString("name"));
+			rt.setMediaFormat(rs.getString("media_format"));
+			
+			this.rts.add(rt);
+		}
+		
+		return rts;
+	}
+	
 }

@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.raul.rental_shop.Ultra_Vision.model.Session;
-import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerDAO;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.rental.RentalDAO;
@@ -102,9 +101,18 @@ public class RentalController implements Initializable {
 		text = this.searchField.getText();
 		
 		RentalDAO dao = new RentalDAO();
+		List<RentalEntity> list;
 		
 		try {
-			List<RentalEntity> list = dao.search(text);
+			
+			
+			
+			if (customer.getPrivilege().equalsIgnoreCase("admin")) {
+				list = dao.search(text);
+			} else {
+				list = dao.ownerSearch(customer.getMembershipCardNumber(), text);
+			}
+			
 			
 			ObservableList<RentalEntity> obs = FXCollections
 					.observableArrayList(list);
@@ -228,24 +236,20 @@ public class RentalController implements Initializable {
 			this.mainDiv.getChildren().setAll(pane);
 		}
 	}
-	
-	private void loadChildView(final String path) {
-		try {
-			pane = FXMLLoader.load(getClass()
-					.getResource(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.mainDiv.getChildren().setAll(pane);
-	}
+
 	
 	private void populateTableView() {
 		
 		RentalDAO dao = new RentalDAO();
+		List<RentalEntity> list = null;
 		
 		try {
 			
-			List<RentalEntity> list = dao.getAll();
+			if (customer.getPrivilege().equalsIgnoreCase("admin")) {
+				list = dao.getAll();
+			} else {
+				list = dao.ownersItems(customer.getMembershipCardNumber());
+			}
 			
 			ObservableList<RentalEntity> obs = FXCollections
 					.observableArrayList(list);

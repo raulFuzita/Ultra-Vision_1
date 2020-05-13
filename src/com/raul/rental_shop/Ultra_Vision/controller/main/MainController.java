@@ -9,20 +9,14 @@ import com.raul.rental_shop.Ultra_Vision.model.Session;
 import com.raul.rental_shop.Ultra_Vision.model.customer.CustomerEntity;
 import com.raul.rental_shop.Ultra_Vision.model.customer.NullCustomerEntity;
 
-import javafx.concurrent.Task;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {

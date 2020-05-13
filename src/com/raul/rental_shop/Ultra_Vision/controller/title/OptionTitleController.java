@@ -6,12 +6,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
-import com.raul.rental_shop.Ultra_Vision.model.DAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicDAO;
 import com.raul.rental_shop.Ultra_Vision.model.title.MusicEntity;
 import com.raul.rental_shop.Ultra_Vision.model.title.TVDAO;
@@ -28,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -90,7 +89,6 @@ public class OptionTitleController implements Initializable {
 	public void actionSong() {
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
 		
-		
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -104,17 +102,11 @@ public class OptionTitleController implements Initializable {
 			atc.getAdditional2Label().setText("Album:");
 			atc.getAdditional2Field().setPromptText("Enter an album name...");
 			
-			if (typePlan.equalsIgnoreCase("ML")) {
-				atc.getCdCheck().setSelected(true);
-				atc.getDvdCheck().setSelected(false);
-			} else {
-				atc.getDvdCheck().setSelected(true);
-				atc.getCdCheck().setSelected(false);
-			}
-			
-			atc.getCdCheck().setDisable(true);
-			atc.getDvdCheck().setDisable(true);
-			atc.getBluerayCheck().setDisable(true);
+			atc.getCdRadio().setSelected(true);
+
+			atc.getCdRadio().setDisable(true);
+			atc.getDvdRadio().setDisable(true);
+			atc.getBluerayRadio().setDisable(true);
 			
 			atc.getAddBtn().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
@@ -140,11 +132,11 @@ public class OptionTitleController implements Initializable {
 							ms.setArtist(atc.getAdditional1Field().getText());
 							ms.setAlbum(atc.getAdditional2Field().getText());
 							
-							if (typePlan.equalsIgnoreCase("ML")) {
-								ms.setMediaFormat(atc.getCdCheck().getText());
-							} else {
-								ms.setMediaFormat(atc.getDvdCheck().getText());
-							}
+							RadioButton chk = (RadioButton) atc.getMediaGroup()
+										.getSelectedToggle();
+							
+							ms.setMediaFormat(chk.getText());
+
 							
 							ms.setTypeTitle(typePlan);
 							
@@ -175,8 +167,82 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionLiveConcertVideo() {
-		typePlan = "ML";
-		actionSong();
+		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			
+			loader.setLocation(getClass().getResource(path));
+			pane = loader.load();
+			
+			AddTitleController atc = loader.getController();
+			atc.getAdditional1Label().setText("Artist:");
+			atc.getAdditional1Field().setPromptText("Enter an artist name...");
+			atc.getAdditional2Label().setText("Album:");
+			atc.getAdditional2Field().setPromptText("Enter an album name...");
+			
+			atc.getDvdRadio().setSelected(true);
+			
+			atc.getCdRadio().setDisable(true);
+			atc.getDvdRadio().setDisable(true);
+			atc.getBluerayRadio().setDisable(true);
+			
+			atc.getAddBtn().setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					
+					if (atc.validateFields()) {
+						
+						System.out.println("Inside of validation");
+						
+						MusicEntity ms = new MusicEntity();
+						TitleDAO tDAO = new TitleDAO();
+						try {
+							int code = tDAO.lastCode();
+							ms.setCode(++code);
+							ms.setName(atc.getNameField().getText());
+							double cost = Double.parseDouble(atc.getCostField().getText());
+							ms.setCost(cost);
+							ms.setGenre(atc.getGenreField().getText());
+							
+							LocalDate year = atc.getDatePicker().getValue();
+							ms.setYear(year.toString());
+							
+							ms.setArtist(atc.getAdditional1Field().getText());
+							ms.setAlbum(atc.getAdditional2Field().getText());
+							
+							RadioButton chk = (RadioButton) atc.getMediaGroup()
+										.getSelectedToggle();
+							
+							ms.setMediaFormat(chk.getText());
+
+							
+							ms.setTypeTitle(typePlan);
+							
+							TitleEntity t = ms;
+							
+							if(tDAO.add(t)) {
+								MusicDAO mDAO = new MusicDAO();
+								if(mDAO.add(ms)) {
+									dialogMaker.makeDiagInfo("Music has been created successfully");
+									atc.cleanFields();
+								}
+							}
+							
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			});
+			
+			this.mainDiv.getChildren().setAll(pane);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -196,10 +262,11 @@ public class OptionTitleController implements Initializable {
 			atc.getAdditional1Field().setPromptText("Enter a director name...");
 			atc.getAdditional2Label().setText("Description:");
 			atc.getAdditional2Field().setPromptText("Enter a description...");
-			atc.getCdCheck().setDisable(true);
-			atc.getDvdCheck().setSelected(true);
-			atc.getDvdCheck().setDisable(false);
-			atc.getBluerayCheck().setDisable(false);
+			
+			atc.getCdRadio().setDisable(true);
+			atc.getDvdRadio().setSelected(true);
+			atc.getDvdRadio().setDisable(false);
+			atc.getBluerayRadio().setDisable(false);
 			
 			atc.getAddBtn().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
@@ -221,7 +288,12 @@ public class OptionTitleController implements Initializable {
 							
 							vd.setDirector(atc.getAdditional1Field().getText());
 							vd.setDescription(atc.getAdditional2Field().getText());
-							vd.setMediaFormat(atc.getDvdCheck().getText());
+							
+							RadioButton chk = (RadioButton) atc.getMediaGroup()
+									.getSelectedToggle();
+							
+							vd.setMediaFormat(chk.getText());
+							
 							vd.setTypeTitle(typePlan);
 							
 							TitleEntity t = vd;
@@ -267,10 +339,11 @@ public class OptionTitleController implements Initializable {
 			atc.getAdditional1Field().setPromptText("Enter an character series...");
 			atc.getAdditional2Label().setVisible(false);
 			atc.getAdditional2Field().setVisible(false);
-			atc.getCdCheck().setDisable(true);
-			atc.getDvdCheck().setSelected(true);
-			atc.getDvdCheck().setDisable(false);
-			atc.getBluerayCheck().setDisable(false);
+			
+			atc.getCdRadio().setDisable(true);
+			atc.getDvdRadio().setSelected(true);
+			atc.getDvdRadio().setDisable(false);
+			atc.getBluerayRadio().setDisable(false);
 			
 			atc.getAddBtn().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
@@ -291,7 +364,13 @@ public class OptionTitleController implements Initializable {
 							tv.setYear(year.toString());
 							
 							tv.setCharacterSeries(atc.getAdditional1Field().getText());
-							tv.setMediaFormat(atc.getDvdCheck().getText());
+							
+							
+							RadioButton chk = (RadioButton) atc.getMediaGroup()
+									.getSelectedToggle();
+							
+							tv.setMediaFormat(chk.getText());
+							
 							tv.setTypeTitle(typePlan);
 							
 							TitleEntity t = tv;

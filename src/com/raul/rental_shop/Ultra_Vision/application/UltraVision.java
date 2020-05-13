@@ -66,5 +66,8 @@ public class UltraVision extends Application {
 		}
 	}
 	
-
+	public void finalize() throws Throwable {
+		Database.getInstance().close();
+		System.out.println("Object is destroyed by the Garbage Collector.");
+	}
 }

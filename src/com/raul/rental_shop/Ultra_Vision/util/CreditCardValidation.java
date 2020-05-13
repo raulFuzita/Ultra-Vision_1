@@ -1,5 +1,14 @@
 package com.raul.rental_shop.Ultra_Vision.util;
 
+/**
+ * @author Unknown
+ * 
+ * This class was provided by Amilcar Aponte. It is available on CCT Moodle.
+ * This class is not mentioned in the assignment PDF. This class was used in 
+ * this project even though is understand that it is not necessary to use
+ * since is not explicit in the PDF.
+ *
+ */
 public class CreditCardValidation {
 
 	public static boolean isEircode(String input) {

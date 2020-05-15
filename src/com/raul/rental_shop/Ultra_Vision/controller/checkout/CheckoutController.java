@@ -152,6 +152,7 @@ public class CheckoutController implements Initializable {
 	private void loadBill() {
 		
 		// Gets the cost of all titles and sum
+		this.value = 0;
 		for (CheckoutEntity c : this.titles) {
 			this.value += c.getCost();
 		}
@@ -209,6 +210,9 @@ public class CheckoutController implements Initializable {
 						e.printStackTrace();
 					}
 					success = this.confirmTransaction();
+				} else {
+					this.notUsePoints.setSelected(true);
+					this.actionNotPoints();
 				}
 			} else {
 				// Just show a error message

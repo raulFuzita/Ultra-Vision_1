@@ -148,7 +148,7 @@ public class CustomerController implements Initializable {
 	}
 	
 	/**
-	 * This method will delete a customer record. It has to be selected first.
+	 * This method will delete a customer record. A row has to be selected first.
 	 */
 	@FXML
 	public void actionDelete() {
@@ -165,6 +165,7 @@ public class CustomerController implements Initializable {
 			if (dig.isOption()) {
 				DAO<CustomerEntity> dao = new CustomerDAO();
 				try {
+					// Deletes the record selected
 					if (dao.remove(rowData)) {
 						msg = "User has been deleted successfully";
 					} else {
@@ -189,6 +190,9 @@ public class CustomerController implements Initializable {
 		loadChildView(path);
 	}
 	
+	/**
+	 * This method will delete a customer record. A row has to be selected first.
+	 */
 	@FXML
 	public void actionView() {
 		
@@ -207,14 +211,20 @@ public class CustomerController implements Initializable {
 				e.printStackTrace();
 			}
 			
+			// Loader gets the controller of ShowCustomerController class
 			ShowCustomerController scc = loader.getController();
+			// Pass the selected customer to ShowCustomerController class.
 			scc.setCustomer(rowData);
+			// Checks the method documentation
 			scc.loadData();
-			
+			// Pane is displayed
 			this.mainDiv.getChildren().setAll(this.pane);
 		}
 	}
 	
+	/**
+	 * This method will delete a customer record. A row has to be selected first.
+	 */
 	@FXML
 	public void actionEdit() {
 		
@@ -233,10 +243,13 @@ public class CustomerController implements Initializable {
 				e.printStackTrace();
 			}
 			
+			// Loader gets the controller of EditCustomerController class
 			EditCustomerController scc = loader.getController();
+			// Pass the selected customer to EditCustomerController class.
 			scc.setCustomer(rowData);
+			// Pane is displayed
 			scc.loadData();
-			
+			// Pane is displayed
 			this.mainDiv.getChildren().setAll(this.pane);
 		}
 	}

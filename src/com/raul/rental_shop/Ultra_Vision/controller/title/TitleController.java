@@ -198,6 +198,9 @@ public class TitleController implements Initializable {
 		
 	}
 	
+	/**
+	 * This method will a delete a title that he/she put in the basket.
+	 */
 	@FXML
 	public void actionDelete() {
 		if (rowData == null) {
@@ -213,6 +216,7 @@ public class TitleController implements Initializable {
 			if (dig.isOption()) {
 				DAO<TitleEntity> dao = new TitleDAO();
 				try {
+					// Removes the selected row
 					if (dao.remove(rowData)) {
 						msg = "Title has been deleted successfully";
 					} else {
@@ -227,6 +231,9 @@ public class TitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method will a delete a title that he/she put in the basket.
+	 */
 	@FXML
 	public void actionBasket() {
 		if (rowData == null) {
@@ -235,13 +242,18 @@ public class TitleController implements Initializable {
 			fdw.makeDiagInfo(msg);
 		} else {
 			
+			/* Rented tile will store the size of the title list. */
 			int rentedTitle = Session.INSTANCE.getTitles().size();
+			// Sores a customer id to retrieve information about the membership card
 			int id = Session.INSTANCE.get().getMembershipCardNumber();
 			int rents = 0;
+			// Gets the customer's membership plan
 			String membershipUser = Session.INSTANCE.get().getMembershipPlan();
+			// gets the selected title type plan
 			String membershipTitle = this.rowData.getTypeTitle();
 			boolean allowedBasket = false;
-			
+			/* If the customer membership plan matches the title type plan
+			 * it allows the customer to add it to the basket. */
 			if (membershipUser.equalsIgnoreCase(membershipTitle)) {
 				allowedBasket = true;
 			} else if (membershipUser.equalsIgnoreCase("PR")) {
@@ -256,14 +268,24 @@ public class TitleController implements Initializable {
 				e.printStackTrace();
 			}
 			
+			/* This is an important step to limit the number of title a customer
+			 * can add to the basket. If a customer has already rented a few
+			 * titles it has to be sum to what is in the session already.
+			 * This way you have the right number of rented titles. */
 			rentedTitle += rents;
 			
+			/* If the number of titles doesn't exceeds 4 it'll allow to add 
+			 * one more title. */
 			if (rentedTitle < 4) {
 				if (allowedBasket) {
+					// gets the customer logged.
 					CustomerEntity c = Session.INSTANCE.get();
+					
 					CheckoutEntity ce = new CheckoutEntity(c, this.rowData);
+					// Add the title to the basket
 					Session.INSTANCE.getTitles().add(ce);
 					int counter = Session.INSTANCE.getTitles().size();
+					// Refresh basket counter
 					countBkLabel.setText(""+counter);
 					System.out.println("Title's added successfully");
 				} else {
@@ -277,12 +299,19 @@ public class TitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method load Option Pane. Option Pane will display a menu option
+	 * to create different types of titles.
+	 */
 	@FXML
 	public void actionAdd() {
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/OptionTitleView.fxml";
 		loadChildView(path);
 	}
 	
+	/**
+	 * This method will a delete a title that he/she put in the basket.
+	 */
 	@FXML
 	public void actionView() {
 		if (rowData == null) {
@@ -305,17 +334,23 @@ public class TitleController implements Initializable {
 				
 				if (typePlan.equalsIgnoreCase("ML")) {
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					stc.getAdditional1Label().setText("Artist:");
 					stc.getAdditional2Label().setText("Album:");
 					MusicEntity ms = new MusicEntity();
 					MusicDAO dao = new MusicDAO();
 					ms = dao.get(this.rowData.getCode());
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					stc.getAdditional1Field().setText(ms.getArtist());
 					stc.getAdditional2Field().setText(ms.getAlbum());
 					
 				} else if (typePlan.equalsIgnoreCase("VL")) {
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					stc.getAdditional1Label().setText("Director:");
 					stc.getAdditional2Label().setText("Description:");
 					VideoEntity vd = new VideoEntity();
@@ -327,11 +362,15 @@ public class TitleController implements Initializable {
 					
 					System.out.println(vd);
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					stc.getAdditional1Field().setText(vd.getDirector());
 					stc.getAdditional2Field().setText(vd.getDescription());
 					
 				} else if (typePlan.equalsIgnoreCase("TV")) {
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					stc.getAdditional1Label().setText("Artist:");
 					stc.getAdditional2Label().setVisible(false);
 					stc.getAdditional2Field().setVisible(false);
@@ -362,6 +401,9 @@ public class TitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method will a delete a title that he/she put in the basket.
+	 */
 	@FXML
 	public void actionEdit() {
 		
@@ -386,15 +428,21 @@ public class TitleController implements Initializable {
 				
 				if (typePlan.equalsIgnoreCase("ML")) {
 					
+					
 					etc.getCdRadio().setSelected(true);
 					etc.getDvdRadio().setDisable(true);
 					etc.getBluerayRadio().setDisable(true);
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					etc.getAdditional1Label().setText("Artist:");
 					etc.getAdditional2Label().setText("Album:");
 					
 					MusicDAO dao = new MusicDAO();
 					ms = dao.get(this.rowData.getCode());
+					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					etc.getAdditional1Field().setText(ms.getArtist());
 					etc.getAdditional2Field().setText(ms.getAlbum());
 					
@@ -410,11 +458,16 @@ public class TitleController implements Initializable {
 						etc.getBluerayRadio().setSelected(true);
 					}
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					etc.getAdditional1Label().setText("Director:");
 					etc.getAdditional2Label().setText("Description:");
 					
 					VideoDAO dao = new VideoDAO();
 					vd = dao.get(this.rowData.getCode());
+					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					etc.getAdditional1Field().setText(vd.getDirector());
 					etc.getAdditional2Field().setText(vd.getDescription());
 					
@@ -430,6 +483,8 @@ public class TitleController implements Initializable {
 						etc.getBluerayRadio().setSelected(true);
 					}
 					
+					/* Additional are fields that will change accordingly 
+					 * to a category of title*/
 					etc.getAdditional1Label().setText("Artist:");
 					etc.getAdditional2Label().setVisible(false);
 					etc.getAdditional2Field().setVisible(false);
@@ -450,8 +505,10 @@ public class TitleController implements Initializable {
 					@Override
 					public void handle(ActionEvent arg0) {
 						
+						
 						if (etc.validateFields()) {
 							
+							/* It'll choose the right Category */
 							if (typePlan.equalsIgnoreCase("ML")) {
 								MusicDAO dao = new MusicDAO();
 								try {
@@ -480,7 +537,6 @@ public class TitleController implements Initializable {
 							t.setCode(rowData.getCode());
 							t.setName(etc.getNameField().getText());
 							t.setGenre(etc.getGenreField().getText());
-							
 							
 							LocalDate year = etc.getDatePicker().getValue();
 							t.setYear(year.toString());

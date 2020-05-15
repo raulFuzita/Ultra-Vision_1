@@ -19,8 +19,8 @@ import java.util.List;
  * this class will override the methods and implements it.
  * This interface is based on must DAO interfaces out there.
  * 
- * @apiNote This interface might change in the future. It has decided if 
- * the SQLException will be required of expected to be handle internally.
+ * @apiNote This interface might change in the future. It hasn't been decided yet if 
+ * the SQLException will be required or expected to be handle internally.
  */
 public interface DAO<T> {
 

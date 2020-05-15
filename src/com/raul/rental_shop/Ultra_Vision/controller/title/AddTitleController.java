@@ -21,6 +21,19 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>AddTitleController add a new title record based on the field of the window</p>
+ * 
+ * @role This class will add a new title record. 
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class AddTitleController implements Initializable {
 
 	@FXML private AnchorPane titleAnchor;
@@ -45,6 +58,13 @@ public class AddTitleController implements Initializable {
 	private AnchorPane pane = null;
 	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -53,13 +73,16 @@ public class AddTitleController implements Initializable {
 	
 	@FXML
 	public void actionAdd() {
-		
+		// It is not used currently
 	}
 	
+	/**
+	 * This method close the current pane and load the previous one.
+	 */
 	@FXML
 	public void actionCancel() {
 		try {
-			
+			// Just a simple FXML loader
 			pane = FXMLLoader.load(getClass()
 					.getResource("/com/raul/rental_shop/Ultra_Vision/view/title/OptionTitleView.fxml"));
 			titleAnchor.getChildren().setAll(pane);
@@ -72,6 +95,9 @@ public class AddTitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method will reset all field values
+	 */
 	public void cleanFields() {
 		this.nameField.setText("");
 		this.costField.setText("");
@@ -106,55 +132,120 @@ public class AddTitleController implements Initializable {
 	}
 
 
+	/**
+	 * This method returns an object reference type TextField
+	 * 
+	 * @return nameField which is a type of TextField.
+	 */
 	public TextField getNameField() {
 		return nameField;
 	}
 
+	/**
+	 * This method returns an object reference type TextField
+	 * 
+	 * @return costField which is a type of TextField.
+	 */
 	public TextField getCostField() {
 		return costField;
 	}
 
+	/**
+	 * This method returns an object reference type TextField
+	 * 
+	 * @return genreField which is a type of TextField.
+	 */
 	public TextField getGenreField() {
 		return genreField;
 	}
 
+	/**
+	 * This method returns an object reference type TextField
+	 * 
+	 * @return additional1Field which is a type of TextField.
+	 */
 	public TextField getAdditional1Field() {
 		return additional1Field;
 	}
 
+	/**
+	 * This method returns an object reference type TextField
+	 * 
+	 * @return additional2Field which is a type of TextField.
+	 */
 	public TextField getAdditional2Field() {
 		return additional2Field;
 	}
 
 
+	/**
+	 * This method returns an object reference type Label
+	 * 
+	 * @return additional1Label which is a type of Label.
+	 */
 	public Label getAdditional1Label() {
 		return additional1Label;
 	}
 
+	/**
+	 * This method returns an object reference type Label
+	 * 
+	 * @return additional2Label which is a type of Label.
+	 */
 	public Label getAdditional2Label() {
 		return additional2Label;
 	}
 
+	/**
+	 * This method returns an object reference type DatePicker
+	 * 
+	 * @return datePicker which is a type of DatePicker.
+	 */
 	public DatePicker getDatePicker() {
 		return datePicker;
 	}
 
+	/**
+	 * This method returns an object reference type Button
+	 * 
+	 * @return addBtn which is a type of Button.
+	 */
 	public Button getAddBtn() {
 		return addBtn;
 	}
 
+	/**
+	 * This method returns an object reference type RadioButton
+	 * 
+	 * @return cdRadio which is a type of RadioButton.
+	 */
 	public RadioButton getCdRadio() {
 		return cdRadio;
 	}
 
+	/**
+	 * This method returns an object reference type RadioButton
+	 * 
+	 * @return dvdRadio which is a type of RadioButton.
+	 */
 	public RadioButton getDvdRadio() {
 		return dvdRadio;
 	}
 
+	/**
+	 * This method returns an object reference type RadioButton
+	 * 
+	 * @return bluerayRadio which is a type of RadioButton.
+	 */
 	public RadioButton getBluerayRadio() {
 		return bluerayRadio;
 	}
 
+	/**
+	 * This method returns an object reference type ToggleGroup
+	 * 
+	 * @return mediaGroup which is a type of ToggleGroup.
+	 */
 	public ToggleGroup getMediaGroup() {
 		return mediaGroup;
 	}

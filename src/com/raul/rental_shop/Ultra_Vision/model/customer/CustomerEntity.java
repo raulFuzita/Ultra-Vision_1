@@ -8,7 +8,7 @@ package com.raul.rental_shop.Ultra_Vision.model.customer;
  * 
  * @apiNote
  * <p>CustomerEntity is a class to carry a customer data.<br>
- * This class might change in the future. It has be decided yet rather<br>
+ * This class might change in the future. It hasn't been decided yet rather<br>
  * it'll be used a String to refers to a customer type membership plan or<br>
  * an int that represents a foreign key of another table.</p>
  * 

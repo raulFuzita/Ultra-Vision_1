@@ -11,60 +11,128 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>DialogInfoController is a class to perform a dialog window like<br>
+ * JOptionPane dialog does. If you want to only show a popup window with<br>
+ * an ordinary message and a OK button that the one.</p>
+ * 
+ * <p>This method implements two interfaces, Initializable and Dialog.<br>
+ * The interface Dialog will ensure the class is able to do what was defined<br>
+ * by the interface logic business. Any class that implements this interface<br>
+ * can be treated as such as. 
+ * 
+ * 
+ * @role This class will show a popup window in JavaFX.
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class DialogInfoController implements Initializable, Dialog {
 
+	/* The notation @FXML links the attribute to the Java fx id of a JavaFX
+	 * component.
+	 * 
+	 * AnchorPane allows the edges of child nodes to be anchored to an offset 
+	 * from the anchor pane’s edges. */
 	@FXML private AnchorPane popup;
-	@FXML private TextArea textArea;
+	@FXML private TextArea textArea; // A text are to display an informative message.
+	/* that'll trigger the close method a change the state of variable option */
 	@FXML private Button okBtn;
-	private boolean option = false;
+	private boolean option = false; // It'll give a simple feedback.
 	
+	/* Stage will be a reference of the window.*/
 	private Stage stage = new Stage();
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Scene scene = popup.getScene();
 		this.stage.setScene(scene);
 	}
 	
+	/**
+	 * This method will shift focus back to the window working as popup window.
+	 * This method is linked to a XML element.
+	 */
 	@FXML
 	public void loseFocus() {
 		popup.setFocusTraversable(true);
 	}
 
+	/**
+	 * This method will change state of the variable option to true and then
+	 * close the window.
+	 */
 	@FXML
 	public void actionOK() {
 		option = true;
 		this.closeWindow();
 	}
 	
+	/**
+	 * This method is private and can't be called from outside of the class.
+	 * This method perform the necessary steps to close this instance.
+	 */
 	private void closeWindow() {
 		Stage stage = (Stage) popup.getScene().getWindow();
 		stage.close();
 	}
 
+	/**
+	 * If you need get the message displayed on the popup window you can call
+	 * this method.
+	 */
 	@Override
 	public String getTextArea() {
 		return textArea.getText();
 	}
 
+	/**
+	 * This method sets a text to be displayed on the window.
+	 */
 	@Override
 	public void setTextArea(String text) {
 		this.textArea.setText(text);
 	}
 	
+	/**
+	 * You might want to know if the user has clicked on the button OK or the 
+	 * X button to close the windows, either way it will be caught by this method.
+	 * If the user press OK it returns true. Otherwise false.
+	 */
 	@Override
 	public boolean isOption() {
 		return option;
 	}
 	
+	/**
+	 * This method will held any other action of a class until this window is closed.
+	 */
 	public void show() {
 		stage.showAndWait();
 	}
 	
+	/**
+	 * Although this method public it'll be called when you click on OK or X button.
+	 */
 	public void close() {
 		stage.close();
 	}
 
+	/**
+	 * This method is not implemented.
+	 */
 	@Override
 	public String output() {
 		// TODO Auto-generated method stub

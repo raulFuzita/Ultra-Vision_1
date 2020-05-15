@@ -24,6 +24,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>AddCustomerController add a new customer record based on the field of the window</p>
+ * 
+ * @role This class will add a new customer record. 
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class AddCustomerController implements Initializable {
 
 	@FXML private AnchorPane titleAnchor;
@@ -45,9 +58,17 @@ public class AddCustomerController implements Initializable {
 	private AnchorPane pane = null;
 	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		// Sets a values to a combobox.
 		privilegeBox.getItems().addAll("Customer", "Admin");
 		memberBox.getItems().addAll(
 				"Music Lover",
@@ -55,9 +76,11 @@ public class AddCustomerController implements Initializable {
 				"TV Lover",
 				"Premium");
 		
+		// selects a default value to the combobox
 		this.privilegeBox.getSelectionModel().select(0);
 		this.memberBox.getSelectionModel().select(0);
 		
+		// Format datepicker. Check out the documentation of DatePickerFormat
 		DatePickerFormat.format(birthdayPick, "dd/MM/yyyy");
 	}
 	
@@ -137,6 +160,9 @@ public class AddCustomerController implements Initializable {
 
 	}
 
+	/**
+	 * This method close the current pane and load the previous one.
+	 */
 	@FXML
 	public void actionCancel() {
 		
@@ -204,6 +230,9 @@ public class AddCustomerController implements Initializable {
 		return true;
 	}
 	
+	/**
+	 * This method will reset all field values
+	 */
 	private void cleanFields() {
 		this.nameField.setText("");
 		this.surnameField.setText("");

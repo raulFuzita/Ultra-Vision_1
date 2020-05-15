@@ -31,6 +31,24 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>RentalController will load a table with all rental records but also<br>
+ * provide a control pane to execute simple operations such as<br>
+ * view a rental record information, delete a rental record, and<br>
+ * return one.<br>
+ * Some of available operations are handle half in the due controller and<br>
+ * another half by this controller.</p>
+ * 
+ * @role This will manage other controllers that change a rental state.
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class RentalController implements Initializable {
 
 	@FXML private AnchorPane rentalAnchor;
@@ -53,6 +71,13 @@ public class RentalController implements Initializable {
 	private RentalEntity rowData = null;
 	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -61,11 +86,18 @@ public class RentalController implements Initializable {
 		Optional<CustomerEntity> optional = Optional.ofNullable(customer);
 		CustomerEntity c = optional.orElse(new NullCustomerEntity());
 		
+		// Hides what doesn't concern a customer who is not an admin.
 		if (!c.getPrivilege().equalsIgnoreCase("admin")) {
 			this.deleteBtn.setVisible(false);
 		}
 		
-		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
+		/*
+		 * The code get a row selection or double click event is from an article
+		 * in the stackoverflow. The article link is available below.
+		 * 
+		 * https://stackoverflow.com/questions/26563390/
+		 * detect-doubleclick-on-row-of-tableview-javafx
+		 */
 		this.table.setRowFactory( tv -> {
 			TableRow<RentalEntity> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -82,6 +114,11 @@ public class RentalController implements Initializable {
 		populateTableView();
 	}
 	
+	/**
+	 * If something is types in the search field this method is trigger.
+	 * It'll manage if it should reload the table with all the data or 
+	 * load only data was retrieve and filtered by the database.
+	 */
 	@FXML
 	private void searchChanged() {
 		
@@ -237,7 +274,10 @@ public class RentalController implements Initializable {
 		}
 	}
 
-	
+	/**
+	 * This method will get the titles from the customer session and load to 
+	 * the JavaFX table.
+	 */
 	private void populateTableView() {
 		
 		RentalDAO dao = new RentalDAO();
@@ -254,6 +294,9 @@ public class RentalController implements Initializable {
 			ObservableList<RentalEntity> obs = FXCollections
 					.observableArrayList(list);
 			
+			/* It is important to highlight that PropertyFactory will look for
+			 * the getter methods. You have to ignore the prefix get and put 
+			 * the rest of the name of the method in the argument. */
 			rentAtCol.setCellValueFactory(new PropertyValueFactory<>("RentAt"));
 			returnAtCol.setCellValueFactory(new PropertyValueFactory<>("ReturnAt"));
 			
@@ -263,6 +306,7 @@ public class RentalController implements Initializable {
 			titleCol.setCellValueFactory(new PropertyValueFactory<>("TitleName"));
 			mediaCol.setCellValueFactory(new PropertyValueFactory<>("MediaFormat"));
 			
+			// After everything is set each column is finally added to the table.
 			this.table.setItems(obs);
 			
 		} catch (SQLException e) {

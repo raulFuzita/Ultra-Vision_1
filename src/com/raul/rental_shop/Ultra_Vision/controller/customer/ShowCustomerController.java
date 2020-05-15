@@ -17,6 +17,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>ShowCustomerController will load some information about a customer.</p>
+ * 
+ * @role This class will load some informations about a selected customer. 
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class ShowCustomerController implements Initializable {
 
 	@FXML private AnchorPane showCustomerAnchor;
@@ -36,6 +49,13 @@ public class ShowCustomerController implements Initializable {
 	private AnchorPane pane = null;
 	private CustomerEntity customer;
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadData();
@@ -60,6 +80,9 @@ public class ShowCustomerController implements Initializable {
 		this.mainDiv.getChildren().setAll(this.pane);
 	}
 	
+	/**
+	 * This method close the current pane and load the previous one.
+	 */
 	@FXML
 	public void actionCancel() {
 		
@@ -93,10 +116,22 @@ public class ShowCustomerController implements Initializable {
 		this.membershipLabel.setText(c.getMembershipPlan());
 	}
 
+	// ============ Getter Methods ================
+	
+	/**
+	 * This method returns an object reference type CustomerEntity
+	 * 
+	 * @return customer which is a type of CustomerEntity.
+	 */
 	public CustomerEntity getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * This method will set a CustomerEntity value to the object.
+	 * 
+	 * @param customer is a type of CustomerEntity.
+	 */
 	public void setCustomer(CustomerEntity customer) {
 		this.customer = customer;
 	}

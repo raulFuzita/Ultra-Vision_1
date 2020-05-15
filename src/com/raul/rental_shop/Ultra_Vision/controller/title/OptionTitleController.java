@@ -32,6 +32,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>OptionTitleController will instantiate a concrete class that<br>
+ * extends TitleEntity.</p>
+ * 
+ * @role This class will instantiate TitleEntity children classes. 
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class OptionTitleController implements Initializable {
 
 	@FXML private AnchorPane titleMenuAnchor;
@@ -42,17 +56,28 @@ public class OptionTitleController implements Initializable {
 	@FXML private Pane mainDiv;
 	
 	private AnchorPane pane = null;
-	FactoryDialogWindow dialogMaker = new FactoryDialogWindow();
+	private FactoryDialogWindow dialogMaker = new FactoryDialogWindow();
 	private String typePlan = "ML";
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		/* Loads image file in the image buffer. When an image source is 
+		 * out of the src folder you could face issues to load straight 
+		 * from a Image, or ImageIO class. */
 		BufferedImage img;
 		Image icon;
 		
 		try {
 			
+			// Loads icons
 			img = ImageIO.read(new File("resources/images/title_menu/song.png"));
 			icon = SwingFXUtils.toFXImage(img, null );
 			
@@ -87,6 +112,7 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionSong() {
+		
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
 		
 		try {
@@ -167,6 +193,7 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionLiveConcertVideo() {
+		
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
 		
 		try {
@@ -247,8 +274,10 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionMovie() {
+		
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
 		typePlan = "VL";
+		
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -324,8 +353,10 @@ public class OptionTitleController implements Initializable {
 	
 	@FXML
 	public void actionBoxSet() {
+		
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/title/AddTitleView.fxml";
 		typePlan = "TV";
+		
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
@@ -399,10 +430,14 @@ public class OptionTitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method close the current pane and load the previous one.
+	 */
 	@FXML
 	public void actionClose() {
 		
 		try {
+			// Just a simple FXML loader
 			pane = FXMLLoader.load(getClass()
 					.getResource("/com/raul/rental_shop/Ultra_Vision/view/title/TitleView.fxml"));
 			titleMenuAnchor.getChildren().setAll(pane);

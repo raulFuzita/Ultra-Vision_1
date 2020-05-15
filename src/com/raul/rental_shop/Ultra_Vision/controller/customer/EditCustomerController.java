@@ -26,6 +26,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>EditTitleController will edit and update some information about a customer record.</p>
+ * 
+ * @role This class will edit some informations about a selected customer record. 
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class EditCustomerController implements Initializable {
 
 	@FXML private AnchorPane editCustomerAnchor;
@@ -47,9 +60,17 @@ public class EditCustomerController implements Initializable {
 	private CustomerEntity customer;
 	private FactoryDialogWindow fdw = new FactoryDialogWindow();
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		// Sets a values to a combobox.
 		privilegeBox.getItems().addAll("Customer", "Admin");
 		memberBox.getItems().addAll(
 				"Music Lover",
@@ -57,6 +78,7 @@ public class EditCustomerController implements Initializable {
 				"TV Lover",
 				"Premium");
 		
+		// Format datepicker. Check out the documentation of DatePickerFormat
 		DatePickerFormat.format(birthdayPick, "dd/MM/yyyy");
 	}
 	
@@ -88,10 +110,14 @@ public class EditCustomerController implements Initializable {
 		}
 	}
 
+	/**
+	 * This method close the current pane and load the previous one.
+	 */
 	@FXML
 	public void actionCancel() {
 		
 		try {
+			// Just a simple FXML loader
 			pane = FXMLLoader.load(getClass()
 					.getResource("/com/raul/rental_shop/Ultra_Vision/view/customer/CustomerView.fxml"));
 			editCustomerAnchor.getChildren().setAll(pane);
@@ -255,10 +281,20 @@ public class EditCustomerController implements Initializable {
 		return true;
 	}
 
+	/**
+	 * This method returns an object reference type CustomerEntity
+	 * 
+	 * @return customer which is a type of CustomerEntity.
+	 */
 	public CustomerEntity getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * This method will set a CustomerEntity value to the object.
+	 * 
+	 * @param customer is a type of CustomerEntity.
+	 */
 	public void setCustomer(CustomerEntity customer) {
 		this.customer = customer;
 	}

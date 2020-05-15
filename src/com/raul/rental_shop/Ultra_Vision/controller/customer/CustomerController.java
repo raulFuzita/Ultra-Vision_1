@@ -25,6 +25,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>CustomerController will load a table with all customers but also<br>
+ * provide a control pane to execute simple operations such as<br>
+ * view a customer information, delete a customer, edit a customer, and add a new one.<br>
+ * Some of available operations are handle half in the due controller and<br>
+ * another half by this controller.</p>
+ * 
+ * @role This will manage other controllers that change a customer state or add new one.
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class CustomerController implements Initializable {
 
 	@FXML private AnchorPane rentalAnchor;
@@ -45,12 +62,25 @@ public class CustomerController implements Initializable {
 	private AnchorPane pane = null;
 	private CustomerEntity rowData = null;
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		populateTableView();
 		
-		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
+		/*
+		 * The code get a row selection or double click event is from an article
+		 * in the stackoverflow. The article link is available below.
+		 * 
+		 * https://stackoverflow.com/questions/26563390/
+		 * detect-doubleclick-on-row-of-tableview-javafx
+		 */
 		this.table.setRowFactory( tv -> {
 			TableRow<CustomerEntity> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -65,6 +95,11 @@ public class CustomerController implements Initializable {
 		});
 	}
 	
+	/**
+	 * If something is types in the search field this method is trigger.
+	 * It'll manage if it should reload the table with all the data or 
+	 * load only data was retrieve and filtered by the database.
+	 */
 	@FXML
 	private void searchChanged() {
 		
@@ -79,6 +114,10 @@ public class CustomerController implements Initializable {
 		
 	}
 	
+	/**
+	 * This method will get all the customers from a customer table and load into
+	 * a JavaFX table.
+	 */
 	public void actionSearch(String text) {
 		
 		text = this.searchField.getText();
@@ -90,12 +129,16 @@ public class CustomerController implements Initializable {
 		
 		ObservableList<CustomerEntity> obs = FXCollections.observableArrayList(list);
 		
+		/* It is important to highlight that PropertyFactory will look for
+		 * the getter methods. You have to ignore the prefix get and put 
+		 * the rest of the name of the method in the argument. */
 		customerCol.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
 		membershipCol.setCellValueFactory(new PropertyValueFactory<>("MembershipCardNumber"));
 		memberPlan.setCellValueFactory(new PropertyValueFactory<>("MembershipPlan"));
 		phoneCol.setCellValueFactory(new PropertyValueFactory<>("Phonenumber"));
 		addressCol.setCellValueFactory(new PropertyValueFactory<>("Street"));
 		
+		// After everything is set each column is finally added to the table.
 		this.table.setItems(obs);
 		
 		} catch (SQLException e) {
@@ -104,6 +147,9 @@ public class CustomerController implements Initializable {
 		
 	}
 	
+	/**
+	 * This method will delete a customer record. It has to be selected first.
+	 */
 	@FXML
 	public void actionDelete() {
 		if (rowData == null) {
@@ -133,6 +179,10 @@ public class CustomerController implements Initializable {
 		}
 	}
 	
+	/**
+	 * The an add button is trigger this method will load a new pane accroding to
+	 * the path and name of the fxml file.
+	 */
 	@FXML
 	public void actionAdd() {
 		String path = "/com/raul/rental_shop/Ultra_Vision/view/customer/AddCustomerView.fxml";
@@ -191,6 +241,11 @@ public class CustomerController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method loads panes on this window by given a path and file fxml format.
+	 * 
+	 * @param path is a String type. It is expected a valid path and file fxml format.
+	 */
 	private FXMLLoader loadChildView(final String path) {
 		
 		FXMLLoader loader = new FXMLLoader();
@@ -207,6 +262,10 @@ public class CustomerController implements Initializable {
 		return loader;
 	}
 	
+	/**
+	 * This method will get the titles from the customer session and load to 
+	 * the JavaFX table.
+	 */
 	private void populateTableView() {
 		
 		CustomerDAO dao = new CustomerDAO();
@@ -216,13 +275,16 @@ public class CustomerController implements Initializable {
 			ObservableList<CustomerEntity> obs = FXCollections
 					.observableArrayList(list);
 			
-			
+			/* It is important to highlight that PropertyFactory will look for
+			 * the getter methods. You have to ignore the prefix get and put 
+			 * the rest of the name of the method in the argument. */
 			customerCol.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
 			membershipCol.setCellValueFactory(new PropertyValueFactory<>("MembershipCardNumber"));
 			memberPlan.setCellValueFactory(new PropertyValueFactory<>("MembershipPlan"));
 			phoneCol.setCellValueFactory(new PropertyValueFactory<>("Phonenumber"));
 			addressCol.setCellValueFactory(new PropertyValueFactory<>("Street"));
 			
+			// After everything is set each column is finally added to the table.
 			this.table.setItems(obs);
 			
 			

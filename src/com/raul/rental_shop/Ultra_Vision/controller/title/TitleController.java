@@ -45,6 +45,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Raul Macedo Fuzita
+ * 
+ * @version 13.05.20
+ * <br>Version is based on the last update date.
+ * 
+ * @apiNote
+ * <p>TitleController will load a table with all titles but also<br>
+ * provide a control pane to execute simple operations such as<br>
+ * view a title information, delete a title, edit a title, and add a new one.<br>
+ * Some of available operations are handle half in the due controller and<br>
+ * another half by this controller.</p>
+ * 
+ * @role This will manage other controllers that change a title state or add new one.
+ * 
+ * <p>All attributes in this class are private.<p>
+ */
 public class TitleController implements Initializable {
 
 	@FXML private AnchorPane titleAnchor;
@@ -75,25 +92,45 @@ public class TitleController implements Initializable {
 	private EditTitleController etc = null;
 	private CustomerEntity customer;
 	
+	/**
+	 * This method is invoked after @FXML is set. The parameters of initialize
+	 * is not used here.
+	 * 
+	 * @param arg0 is a type of URL.
+	 * @param arg1 is a type of ResourceBundle;
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		this.populateTableView();
+		
+		// Counts how many titles are currently stored in the Session list.
 		int counter = Session.INSTANCE.getTitles().size();
 		countBkLabel.setText(""+counter);
 		
+		/* Gets the customer logged reference to hide elements that doesn't
+		 * concern a user with low privilege access. */
 		customer = Session.INSTANCE.get();
 		
+		/* If for some reason the session return a null object the system won't
+		 * crash, it'll use a Null Object pattern.*/
 		Optional<CustomerEntity> optional = Optional.ofNullable(customer);
 		CustomerEntity c = optional.orElse(new NullCustomerEntity());
 		
+		// Hides what doesn't concern a customer who is not an admin.
 		if (!c.getPrivilege().equalsIgnoreCase("admin")) {
 			this.deleteBtn.setVisible(false);
 			this.updateBtn.setVisible(false);
 			this.addBtn.setVisible(false);
 		}
 		
-		// https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
+		/*
+		 * The code get a row selection or double click event is from an article
+		 * in the stackoverflow. The article link is available below.
+		 * 
+		 * https://stackoverflow.com/questions/26563390/
+		 * detect-doubleclick-on-row-of-tableview-javafx
+		 */
 		this.table.setRowFactory( tv -> {
 			TableRow<TitleEntity> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -108,6 +145,11 @@ public class TitleController implements Initializable {
 		});
 	}
 	
+	/**
+	 * If something is types in the search field this method is trigger.
+	 * It'll manage if it should reload the table with all the data or 
+	 * load only data was retrieve and filtered by the database.
+	 */
 	@FXML
 	private void searchChanged() {
 		
@@ -122,6 +164,10 @@ public class TitleController implements Initializable {
 		
 	}
 	
+	/**
+	 * This method will get all the titles from a title table and load into
+	 * a JavaFX table.
+	 */
 	public void actionSearch(String text) {
 		
 		text = this.searchField.getText();
@@ -133,6 +179,9 @@ public class TitleController implements Initializable {
 		
 		ObservableList<TitleEntity> obs = FXCollections.observableArrayList(list);
 		
+		/* It is important to highlight that PropertyFactory will look for
+		 * the getter methods. You have to ignore the prefix get and put 
+		 * the rest of the name of the method in the argument. */
 		codeCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		costCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
@@ -140,6 +189,7 @@ public class TitleController implements Initializable {
 		yearCol.setCellValueFactory(new PropertyValueFactory<>("Year"));
 		mediaCol.setCellValueFactory(new PropertyValueFactory<>("MediaFormat"));
 		
+		// After everything is set each column is finally added to the table.
 		this.table.setItems(obs);
 		
 		} catch (SQLException e) {
@@ -471,6 +521,11 @@ public class TitleController implements Initializable {
 		}
 	}
 	
+	/**
+	 * This method loads panes on this window by given a path and file fxml format.
+	 * 
+	 * @param path is a String type. It is expected a valid path and file fxml format.
+	 */
 	private void loadChildView(final String path) {
 		try {
 			pane = FXMLLoader.load(getClass()
@@ -481,6 +536,10 @@ public class TitleController implements Initializable {
 		this.mainDiv.getChildren().setAll(pane);
 	}
 	
+	/**
+	 * This method will get all the titles from a title table and load into
+	 * a JavaFX table.
+	 */
 	private void populateTableView() {
 		
 		TitleDAO dao = new TitleDAO();
@@ -491,6 +550,9 @@ public class TitleController implements Initializable {
 			ObservableList<TitleEntity> obs = FXCollections
 					.observableArrayList(list);
 			
+			/* It is important to highlight that PropertyFactory will look for
+			 * the getter methods. You have to ignore the prefix get and put 
+			 * the rest of the name of the method in the argument. */
 			codeCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
 			costCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
@@ -498,6 +560,7 @@ public class TitleController implements Initializable {
 			yearCol.setCellValueFactory(new PropertyValueFactory<>("Year"));
 			mediaCol.setCellValueFactory(new PropertyValueFactory<>("MediaFormat"));
 			
+			// After everything is set each column is finally added to the table.
 			this.table.setItems(obs);
 			
 		} catch (SQLException e) {

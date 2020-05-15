@@ -255,12 +255,11 @@ public class EditCustomerController implements Initializable {
 			this.fdw.makeDiagInfo("The field surname must be filled");
 			return false;
 		}
-		
-		if (!birthday.matches("^(3[01]|[12][0-9]|0[1-9]])/(1[0-2]|0[1-9])/[0-9]{4}$")) {
+		if (!birthday.matches("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")) {
 			this.fdw.makeDiagInfo("Wrong date format, please the supported "
 					+ "\nformat is dd/MM/yyyy");
 			return false;
-		} 
+		}
 		if (street.isEmpty()) {
 			this.fdw.makeDiagInfo("The field street must be filled");
 			return false;

@@ -68,7 +68,7 @@ public class AddTitleController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		DatePickerFormat.format(datePicker, "dd-MM-yyyy");
+		DatePickerFormat.format(datePicker, "dd/MM/yyyy");
 	}
 	
 	@FXML
@@ -121,8 +121,11 @@ public class AddTitleController implements Initializable {
 			DatePickerFormat.format(datePicker, "dd/MM/yyyy");
 		}
 		
+		if(this.costField.getText().isEmpty()) {
+			this.costField.setText("0.0");
+		}
 		
-		if (!year.matches("^(3[01]|[12][0-9]|0[1-9]])/(1[0-2]|0[1-9])/[0-9]{4}$")) {
+		if (!year.matches("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")) {
 			this.fdw.makeDiagInfo("Wrong date format, please the supported "
 					+ "\nformat is dd/MM/yyyy");
 			return false;
